@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #1a1a2e;
+  color: #fff;
+  overflow: hidden;
+}
+
+#app {
+  height: 100%;
+}
+
+section {
+  height: 100vh;
+  scroll-snap-align: start;
+  overflow: hidden;
+}
+
+html {
+  scroll-snap-type: y mandatory;
+}

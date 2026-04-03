@@ -1,0 +1,33 @@
+{
+  "cumpleañero": {
+    "nombre": "Emily",
+    "edad": 25,
+    "tipo": "XV años" 
+  },
+  "evento": {
+    "titulo": "¡Estás Invitado!",
+    "subtitulo": "Celebremos juntos mis XV años",
+    "fecha": "15 de Abril de 2026",
+    "hora": "19:00 hrs",
+    "ubicacion": {
+      "lugar": "Salón de Eventos Elite",
+      "dirección": "Av. Principal #123, Col. Centro",
+      "ciudad": "Ciudad de México"
+    },
+    "dressCode": "Elegante - Formal"
+  },
+  "rsvp": {
+    "contacto": "María: 55-1234-5678",
+    "whatsapp": "https://wa.me/5512345678"
+  },
+  "fotos": {
+    "hero": "https://images.unsplash.com/photo-1530103862676-de3c9fb59b6f?w=800",
+    "dressCode": "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800",
+    "galeria": [
+      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400",
+      "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400",
+      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400",
+      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400"
+    ]
+  }
+}
