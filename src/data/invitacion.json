@@ -1,33 +1,33 @@
 {
   "cumpleañero": {
     "nombre": "Emily",
-    "edad": 25,
-    "tipo": "XV años" 
+    "edad": 6,
+    "tipo": "Cumpleaños"
   },
   "evento": {
     "titulo": "¡Estás Invitado!",
-    "subtitulo": "Celebremos juntos mis XV años",
+    "subtitulo": "¡Ven a celebrar mi cumple!",
     "fecha": "15 de Abril de 2026",
-    "hora": "19:00 hrs",
+    "hora": "16:00 hrs",
     "ubicacion": {
-      "lugar": "Salón de Eventos Elite",
-      "dirección": "Av. Principal #123, Col. Centro",
+      "lugar": "Salón de Fiestas Bunny",
+      "dirección": "Av. Flores #123, Col. Jardín",
       "ciudad": "Ciudad de México"
     },
-    "dressCode": "Elegante - Formal"
+    "dressCode": "Rosa - Rosa chicle"
   },
   "rsvp": {
-    "contacto": "María: 55-1234-5678",
+    "contacto": "Mamá: 55-1234-5678",
     "whatsapp": "https://wa.me/5512345678"
   },
   "fotos": {
-    "hero": "https://images.unsplash.com/photo-1530103862676-de3c9fb59b6f?w=800",
-    "dressCode": "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800",
+    "hero": "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=800",
+    "dressCode": "https://images.unsplash.com/photo-1612152605347-f93296d30f72?w=800",
     "galeria": [
-      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400",
-      "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400",
-      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400",
-      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400"
+      "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=400",
+      "https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=400",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400",
+      "https://images.unsplash.com/photo-1606092195730-5d7b9af1ef4d?w=400"
     ]
   }
 }
