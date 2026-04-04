@@ -172,54 +172,42 @@ const getCloudStyle = (n) => {
   }
 }
 
-// Completely random positions - not in any pattern
+// Random positions - not diagonal
 const photoCollage = ref([])
 
 onMounted(() => {
   const photos = []
   const sizeOptions = [
-    { w: 180, h: 240 },  // Large vertical
-    { w: 220, h: 160 },  // Large horizontal
-    { w: 140, h: 170 },  // Medium
-    { w: 100, h: 130 },  // Small
-    { w: 160, h: 200 },  // Medium-large vertical
-    { w: 200, h: 140 },  // Medium-large horizontal
-    { w: 80, h: 100 },   // Tiny
-    { w: 250, h: 180 },  // Extra large
+    { w: 180, h: 240 },
+    { w: 220, h: 160 },
+    { w: 140, h: 170 },
+    { w: 100, h: 130 },
+    { w: 160, h: 200 },
+    { w: 200, h: 140 },
+    { w: 80, h: 100 },
+    { w: 250, h: 180 },
   ]
   
-  // Use seeded random to get different positions each load
-  const seed = Date.now()
-  const random = () => {
-    seed = (seed * 9301 + 49297) % 233280
-    return seed / 233280
-  }
-  
   for (let i = 0; i < 18; i++) {
-    const sizeIdx = Math.floor(random() * sizeOptions.length)
+    const sizeIdx = Math.floor(Math.random() * sizeOptions.length)
     const size = sizeOptions[sizeIdx]
     
-    // Use sine/cosine to scatter positions more naturally but still random
-    // Avoid diagonal by using different formulas for x and y
-    const angle1 = random() * Math.PI * 2
-    const angle2 = random() * Math.PI * 2
+    // Random position - avoid diagonal pattern
+    const x = 3 + Math.random() * 72  // 3% to 75%
+    const y = 5 + Math.random() * 55  // 5% to 60%
     
-    // Map to screen coordinates (avoid edges)
-    const x = 5 + (Math.sin(angle1) * 0.5 + 0.5) * 70  // 5% to 75%
-    const y = 5 + (Math.cos(angle2) * 0.5 + 0.5) * 60  // 5% to 65%
-    
-    const rotation = (random() - 0.5) * 30  // -15 to +15 degrees
+    const rotation = (Math.random() - 0.5) * 30
     
     const isClose = size.w > 160
-    const duration = isClose ? 18 + random() * 4 : 10 + random() * 5
-    const delay = random() * 10
+    const duration = isClose ? 18 + Math.random() * 4 : 10 + Math.random() * 5
+    const delay = Math.random() * 10
     
     photos.push({
       src: data.fotos.galeria[i % data.fotos.galeria.length],
       x: x,
       y: y,
-      width: size.w + (random() - 0.5) * 30,
-      height: size.h + (random() - 0.5) * 30,
+      width: size.w + (Math.random() - 0.5) * 30,
+      height: size.h + (Math.random() - 0.5) * 30,
       rotation: rotation,
       duration: duration,
       delay: delay
@@ -539,7 +527,7 @@ onMounted(() => {
   color: #555;
 }
 
-/* Fotos - Random scattered collage */
+/* Fotos */
 .fotos {
   background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
 }
@@ -595,6 +583,5 @@ onMounted(() => {
   .bunny-icon { font-size: 3rem; }
   .scroll-hint { font-size: 1.1rem; }
   .lottie-bunny { width: 120px !important; height: 120px !important; }
-  .collage-photo { transform: scale(0.7) !important; }
 }
 </style>
