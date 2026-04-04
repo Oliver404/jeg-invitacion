@@ -123,24 +123,14 @@
 
     <!-- Section 6: Fotos Recuerdos -->
     <section class="section fotos" id="fotos">
-      <div class="photo-collage">
-        <div 
-          v-for="(photo, index) in photoCollage" 
+      <div class="photo-rain-container" id="parallax-container">
+        <img 
+          v-for="(photo, index) in photos" 
           :key="index"
-          class="collage-photo"
-          :style="{
-            left: photo.x + '%',
-            top: photo.y + '%',
-            width: photo.width + 'px',
-            height: photo.height + 'px',
-            animationDuration: photo.duration + 's',
-            animationDelay: photo.delay + 's',
-            transform: 'rotate(' + photo.rotation + 'deg)',
-            zIndex: index
-          }"
+          :src="photo.url"
+          class="parallax-photo"
+          :style="photo.style"
         >
-          <img :src="photo.src" :alt="'Photo ' + index">
-        </div>
       </div>
       <div class="section-content">
         <div class="icon">📸</div>
@@ -161,7 +151,6 @@ const getCloudStyle = (n) => {
   const topPositions = [5, 15, 25, 35, 45, 55, 65, 75, 10, 30, 50, 70]
   const speeds = [25, 20, 15, 22, 12, 18, 28, 14, 16, 24, 19, 13]
   const delays = [0, -5, -10, -3, -8, -15, -2, -12, -7, -4, -11, -6]
-  
   const size = sizes[n-1]
   return {
     width: size + 'px',
@@ -172,48 +161,54 @@ const getCloudStyle = (n) => {
   }
 }
 
-// Random positions - not diagonal
-const photoCollage = ref([])
+// Photos for parallax rain - same approach as the user's code
+const photos = ref([])
 
 onMounted(() => {
-  const photos = []
-  const sizeOptions = [
-    { w: 180, h: 240 },
-    { w: 220, h: 160 },
-    { w: 140, h: 170 },
-    { w: 100, h: 130 },
-    { w: 160, h: 200 },
-    { w: 200, h: 140 },
-    { w: 80, h: 100 },
-    { w: 250, h: 180 },
+  // Duplicate photos to have more images
+  const allPhotos = [
+    ...data.fotos.galeria,
+    ...data.fotos.galeria,
+    ...data.fotos.galeria
   ]
   
-  for (let i = 0; i < 18; i++) {
-    const sizeIdx = Math.floor(Math.random() * sizeOptions.length)
-    const size = sizeOptions[sizeIdx]
+  const photoList = allPhotos.map((url, index) => ({
+    id: index,
+    url: url
+  }))
+  
+  const generatedPhotos = []
+  
+  photoList.forEach((photo) => {
+    // Horizontal position: 5% to 85%
+    const randomLeft = Math.floor(Math.random() * 80) + 5
     
-    // Random position - avoid diagonal pattern
-    const x = 3 + Math.random() * 72  // 3% to 75%
-    const y = 5 + Math.random() * 55  // 5% to 60%
+    // Duration: 8 to 20 seconds
+    const randomDuration = Math.floor(Math.random() * 12) + 8
     
-    const rotation = (Math.random() - 0.5) * 30
+    // Delay: 0 to 10 seconds
+    const randomDelay = Math.random() * 10
     
-    const isClose = size.w > 160
-    const duration = isClose ? 18 + Math.random() * 4 : 10 + Math.random() * 5
-    const delay = Math.random() * 10
+    // Width: 100px to 160px (smaller = further = slower parallax)
+    const randomWidth = Math.floor(Math.random() * 60) + 100
     
-    photos.push({
-      src: data.fotos.galeria[i % data.fotos.galeria.length],
-      x: x,
-      y: y,
-      width: size.w + (Math.random() - 0.5) * 30,
-      height: size.h + (Math.random() - 0.5) * 30,
-      rotation: rotation,
-      duration: duration,
-      delay: delay
+    // z-index based on width (larger = closer = on top)
+    const zIndex = Math.floor(randomWidth / 10)
+    
+    generatedPhotos.push({
+      url: photo.url,
+      style: {
+        left: randomLeft + '%',
+        animationDuration: randomDuration + 's',
+        animationDelay: randomDelay + 's',
+        width: randomWidth + 'px',
+        height: (randomWidth * 1.2) + 'px',
+        zIndex: zIndex
+      }
     })
-  }
-  photoCollage.value = photos
+  })
+  
+  photos.value = generatedPhotos
 })
 </script>
 
@@ -527,12 +522,12 @@ onMounted(() => {
   color: #555;
 }
 
-/* Fotos */
+/* Fotos - Parallax Rain */
 .fotos {
   background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
 }
 
-.photo-collage {
+.photo-rain-container {
   position: absolute;
   top: 0;
   left: 0;
@@ -542,36 +537,30 @@ onMounted(() => {
   pointer-events: none;
 }
 
-.collage-photo {
+.parallax-photo {
   position: absolute;
-  border-radius: 12px;
-  border: 4px solid #fff;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-  animation: parallaxFloat linear infinite;
-  will-change: transform, opacity;
-}
-
-.collage-photo img {
-  width: 100%;
-  height: 100%;
+  top: 100%;
+  border-radius: 10px;
+  border: 3px solid #fff;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   object-fit: cover;
-  border-radius: 8px;
+  animation: parallaxRain linear infinite;
 }
 
-@keyframes parallaxFloat {
-  0% { 
-    transform: translateY(0) rotate(0deg); 
-    opacity: 0; 
+@keyframes parallaxRain {
+  0% {
+    top: 100%;
+    opacity: 0;
   }
-  8% { 
-    opacity: 1; 
+  10% {
+    opacity: 1;
   }
-  92% { 
-    opacity: 1; 
+  90% {
+    opacity: 1;
   }
-  100% { 
-    transform: translateY(-50vh) rotate(8deg); 
-    opacity: 0; 
+  100% {
+    top: -100%;
+    opacity: 0;
   }
 }
 
