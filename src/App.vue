@@ -96,7 +96,7 @@
       <div class="overlay"></div>
       <div class="lottie-overlay">
         <lottie-player 
-          src="https://assets9.lottiefiles.com/packages/lf20_u4yrau.json"
+          src="https://oliver404.github.io/emily-invitacion/bunny.json"
           background="transparent"
           speed="1"
           style="width: 100%; height: 100%; position: absolute;"
