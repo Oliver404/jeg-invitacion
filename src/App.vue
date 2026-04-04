@@ -94,7 +94,7 @@
       </div>
       <div class="bg-image" :style="{ backgroundImage: 'url(' + data.fotos.dressCode + ')' }"></div>
       <div class="overlay"></div>
-      <div class="lottie-overlay">
+      <!-- <div class="lottie-overlay">
         <lottie-player 
           src="https://oliver404.github.io/emily-invitacion/bunny.json"
           background="transparent"
@@ -103,7 +103,7 @@
           loop
           autoplay
         />
-      </div>
+      </div> -->
       <div class="dc-content">
         <div class="icon">👗</div>
         <h2>Dress Code</h2>
