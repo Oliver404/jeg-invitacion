@@ -6,7 +6,7 @@
       <div class="hero-overlay"></div>
       <div class="clouds-container">
         <img v-for="n in 12" :key="'hero-'+n" :src="'/images/cloud' + ((n-1)%4+1) + '.png'" 
-             class="cloud" :class="'cloud-' + n" :style="getCloudStyle(n)" alt="cloud">
+             class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="lottie-bunny">
         <lottie-player 
@@ -32,7 +32,7 @@
     <section class="section fecha" id="fecha">
       <div class="clouds-container">
         <img v-for="n in 12" :key="'fecha-'+n" :src="'/images/cloud' + ((n-1)%4+1) + '.png'" 
-             class="cloud" :class="'cloud-' + n" :style="getCloudStyle(n)" alt="cloud">
+             class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="section-content">
         <div class="icon">🎉</div>
@@ -48,7 +48,7 @@
     <section class="section ubicacion" id="ubicacion">
       <div class="clouds-container">
         <img v-for="n in 12" :key="'ubi-'+n" :src="'/images/cloud' + ((n-1)%4+1) + '.png'" 
-             class="cloud" :class="'cloud-' + n" :style="getCloudStyle(n)" alt="cloud">
+             class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="bg-image" :style="{ backgroundImage: 'url(https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800)' }"></div>
       <div class="overlay"></div>
@@ -81,7 +81,7 @@
     <section class="section dresscode" id="dresscode">
       <div class="clouds-container">
         <img v-for="n in 12" :key="'dress-'+n" :src="'/images/cloud' + ((n-1)%4+1) + '.png'" 
-             class="cloud" :class="'cloud-' + n" :style="getCloudStyle(n)" alt="cloud">
+             class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="bg-image" :style="{ backgroundImage: 'url(' + data.fotos.dressCode + ')' }"></div>
       <div class="overlay"></div>
@@ -106,7 +106,7 @@
     <section class="section rsvp" id="rsvp">
       <div class="clouds-container">
         <img v-for="n in 12" :key="'rsvp-'+n" :src="'/images/cloud' + ((n-1)%4+1) + '.png'" 
-             class="cloud" :class="'cloud-' + n" :style="getCloudStyle(n)" alt="cloud">
+             class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="section-content">
         <div class="icon">💌</div>
@@ -121,7 +121,7 @@
       </div>
     </section>
 
-    <!-- Section 6: Fotos Recuerdos - Random collage with parallax -->
+    <!-- Section 6: Fotos Recuerdos -->
     <section class="section fotos" id="fotos">
       <div class="photo-collage">
         <div 
@@ -156,7 +156,6 @@ import data from './data/invitacion.json'
 
 const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(data.evento.ubicacion.lugar + ' ' + data.evento.ubicacion.dirección + ' ' + data.evento.ubicacion.ciudad)}`
 
-// Cloud parallax styles
 const getCloudStyle = (n) => {
   const sizes = [60, 90, 120, 80, 140, 100, 70, 130, 110, 95, 85, 125]
   const topPositions = [5, 15, 25, 35, 45, 55, 65, 75, 10, 30, 50, 70]
@@ -173,43 +172,54 @@ const getCloudStyle = (n) => {
   }
 }
 
-// Photo collage - random positions, sizes, parallax effect
+// Completely random positions - not in any pattern
 const photoCollage = ref([])
 
 onMounted(() => {
   const photos = []
-  // Create 15 photos with random positions (not diagonal), varied sizes, parallax
   const sizeOptions = [
-    { w: 180, h: 220 },  // Large vertical
-    { w: 200, h: 150 },  // Large horizontal
-    { w: 120, h: 140 },  // Medium
-    { w: 90, h: 110 },   // Small
-    { w: 160, h: 180 },  // Medium-large
-    { w: 100, h: 130 },  // Medium-small
+    { w: 180, h: 240 },  // Large vertical
+    { w: 220, h: 160 },  // Large horizontal
+    { w: 140, h: 170 },  // Medium
+    { w: 100, h: 130 },  // Small
+    { w: 160, h: 200 },  // Medium-large vertical
+    { w: 200, h: 140 },  // Medium-large horizontal
+    { w: 80, h: 100 },   // Tiny
+    { w: 250, h: 180 },  // Extra large
   ]
   
-  for (let i = 0; i < 15; i++) {
-    const sizeIdx = Math.floor(Math.random() * sizeOptions.length)
+  // Use seeded random to get different positions each load
+  const seed = Date.now()
+  const random = () => {
+    seed = (seed * 9301 + 49297) % 233280
+    return seed / 233280
+  }
+  
+  for (let i = 0; i < 18; i++) {
+    const sizeIdx = Math.floor(random() * sizeOptions.length)
     const size = sizeOptions[sizeIdx]
     
-    // Random positions - avoid diagonal by using full screen area
-    const x = 3 + Math.random() * 75  // 3% to 78%
-    const y = 5 + Math.random() * 60  // 5% to 65%
+    // Use sine/cosine to scatter positions more naturally but still random
+    // Avoid diagonal by using different formulas for x and y
+    const angle1 = random() * Math.PI * 2
+    const angle2 = random() * Math.PI * 2
     
-    // Rotation for variety
-    const rotation = (Math.random() - 0.5) * 20  // -10 to +10 degrees
+    // Map to screen coordinates (avoid edges)
+    const x = 5 + (Math.sin(angle1) * 0.5 + 0.5) * 70  // 5% to 75%
+    const y = 5 + (Math.cos(angle2) * 0.5 + 0.5) * 60  // 5% to 65%
     
-    // Parallax: larger/slower = closer, smaller/faster = further
-    const isClose = size.w > 150
-    const duration = isClose ? 15 + Math.random() * 5 : 8 + Math.random() * 4
-    const delay = Math.random() * 8
+    const rotation = (random() - 0.5) * 30  // -15 to +15 degrees
+    
+    const isClose = size.w > 160
+    const duration = isClose ? 18 + random() * 4 : 10 + random() * 5
+    const delay = random() * 10
     
     photos.push({
       src: data.fotos.galeria[i % data.fotos.galeria.length],
       x: x,
       y: y,
-      width: size.w + Math.random() * 20,
-      height: size.h + Math.random() * 20,
+      width: size.w + (random() - 0.5) * 30,
+      height: size.h + (random() - 0.5) * 30,
       rotation: rotation,
       duration: duration,
       delay: delay
@@ -529,7 +539,7 @@ onMounted(() => {
   color: #555;
 }
 
-/* Fotos - Random collage with parallax */
+/* Fotos - Random scattered collage */
 .fotos {
   background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
 }
@@ -572,7 +582,7 @@ onMounted(() => {
     opacity: 1; 
   }
   100% { 
-    transform: translateY(-60vh) rotate(5deg); 
+    transform: translateY(-50vh) rotate(8deg); 
     opacity: 0; 
   }
 }
@@ -585,6 +595,6 @@ onMounted(() => {
   .bunny-icon { font-size: 3rem; }
   .scroll-hint { font-size: 1.1rem; }
   .lottie-bunny { width: 120px !important; height: 120px !important; }
-  .collage-photo { width: 100px !important; height: 120px !important; }
+  .collage-photo { transform: scale(0.7) !important; }
 }
 </style>
