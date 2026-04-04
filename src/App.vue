@@ -121,22 +121,25 @@
       </div>
     </section>
 
-    <!-- Section 6: Fotos Recuerdos -->
+    <!-- Section 6: Fotos Recuerdos - Random collage with parallax -->
     <section class="section fotos" id="fotos">
-      <div class="photo-rain">
+      <div class="photo-collage">
         <div 
-          v-for="(foto, index) in photoRain" 
+          v-for="(photo, index) in photoCollage" 
           :key="index"
-          class="rain-photo"
+          class="collage-photo"
           :style="{
-            left: foto.x + '%',
-            animationDelay: foto.delay + 's',
-            width: foto.width + 'px',
-            height: foto.height + 'px',
+            left: photo.x + '%',
+            top: photo.y + '%',
+            width: photo.width + 'px',
+            height: photo.height + 'px',
+            animationDuration: photo.duration + 's',
+            animationDelay: photo.delay + 's',
+            transform: 'rotate(' + photo.rotation + 'deg)',
             zIndex: index
           }"
         >
-          <img :src="foto.src" :alt="'Photo ' + index">
+          <img :src="photo.src" :alt="'Photo ' + index">
         </div>
       </div>
       <div class="section-content">
@@ -153,47 +156,66 @@ import data from './data/invitacion.json'
 
 const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(data.evento.ubicacion.lugar + ' ' + data.evento.ubicacion.dirección + ' ' + data.evento.ubicacion.ciudad)}`
 
-// Cloud parallax - varied sizes and positions
+// Cloud parallax styles
 const getCloudStyle = (n) => {
-  // Varied sizes
   const sizes = [60, 90, 120, 80, 140, 100, 70, 130, 110, 95, 85, 125]
-  // Vertical distribution (0% to 80% of screen height)
   const topPositions = [5, 15, 25, 35, 45, 55, 65, 75, 10, 30, 50, 70]
-  // Speeds (parallax effect - faster = further away = smaller)
   const speeds = [25, 20, 15, 22, 12, 18, 28, 14, 16, 24, 19, 13]
-  // Delays
   const delays = [0, -5, -10, -3, -8, -15, -2, -12, -7, -4, -11, -6]
   
   const size = sizes[n-1]
-  const top = topPositions[n-1]
-  const speed = speeds[n-1]
-  const delay = delays[n-1]
-  
   return {
     width: size + 'px',
-    top: top + '%',
-    animationDuration: speed + 's',
-    animationDelay: delay + 's',
+    top: topPositions[n-1] + '%',
+    animationDuration: speeds[n-1] + 's',
+    animationDelay: delays[n-1] + 's',
     opacity: size > 100 ? 1 : (size / 100) * 0.8 + 0.2
   }
 }
 
-// Photo rain - fewer photos
-const photoRain = ref([])
+// Photo collage - random positions, sizes, parallax effect
+const photoCollage = ref([])
 
 onMounted(() => {
   const photos = []
-  for (let i = 0; i < 10; i++) {
-    const xBase = 5 + (i * 9)
+  // Create 15 photos with random positions (not diagonal), varied sizes, parallax
+  const sizeOptions = [
+    { w: 180, h: 220 },  // Large vertical
+    { w: 200, h: 150 },  // Large horizontal
+    { w: 120, h: 140 },  // Medium
+    { w: 90, h: 110 },   // Small
+    { w: 160, h: 180 },  // Medium-large
+    { w: 100, h: 130 },  // Medium-small
+  ]
+  
+  for (let i = 0; i < 15; i++) {
+    const sizeIdx = Math.floor(Math.random() * sizeOptions.length)
+    const size = sizeOptions[sizeIdx]
+    
+    // Random positions - avoid diagonal by using full screen area
+    const x = 3 + Math.random() * 75  // 3% to 78%
+    const y = 5 + Math.random() * 60  // 5% to 65%
+    
+    // Rotation for variety
+    const rotation = (Math.random() - 0.5) * 20  // -10 to +10 degrees
+    
+    // Parallax: larger/slower = closer, smaller/faster = further
+    const isClose = size.w > 150
+    const duration = isClose ? 15 + Math.random() * 5 : 8 + Math.random() * 4
+    const delay = Math.random() * 8
+    
     photos.push({
       src: data.fotos.galeria[i % data.fotos.galeria.length],
-      x: xBase + (Math.random() * 4 - 2),
-      delay: i * 1.2,
-      width: 70 + Math.random() * 30,
-      height: 90 + Math.random() * 40
+      x: x,
+      y: y,
+      width: size.w + Math.random() * 20,
+      height: size.h + Math.random() * 20,
+      rotation: rotation,
+      duration: duration,
+      delay: delay
     })
   }
-  photoRain.value = photos
+  photoCollage.value = photos
 })
 </script>
 
@@ -230,7 +252,7 @@ onMounted(() => {
   50% { transform: translateY(-10px); }
 }
 
-/* Clouds with parallax effect */
+/* Clouds */
 .clouds-container {
   position: absolute;
   top: 0;
@@ -507,12 +529,12 @@ onMounted(() => {
   color: #555;
 }
 
-/* Fotos */
+/* Fotos - Random collage with parallax */
 .fotos {
   background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
 }
 
-.photo-rain {
+.photo-collage {
   position: absolute;
   top: 0;
   left: 0;
@@ -522,27 +544,37 @@ onMounted(() => {
   pointer-events: none;
 }
 
-.rain-photo {
+.collage-photo {
   position: absolute;
-  bottom: -150px;
-  border-radius: 10px;
-  border: 3px solid #fff;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-  animation: rainFloat 12s linear infinite;
+  border-radius: 12px;
+  border: 4px solid #fff;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  animation: parallaxFloat linear infinite;
+  will-change: transform, opacity;
 }
 
-.rain-photo img {
+.collage-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 7px;
+  border-radius: 8px;
 }
 
-@keyframes rainFloat {
-  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-  5% { opacity: 1; }
-  95% { opacity: 1; }
-  100% { transform: translateY(-140vh) rotate(10deg); opacity: 0; }
+@keyframes parallaxFloat {
+  0% { 
+    transform: translateY(0) rotate(0deg); 
+    opacity: 0; 
+  }
+  8% { 
+    opacity: 1; 
+  }
+  92% { 
+    opacity: 1; 
+  }
+  100% { 
+    transform: translateY(-60vh) rotate(5deg); 
+    opacity: 0; 
+  }
 }
 
 /* Responsive */
@@ -553,5 +585,6 @@ onMounted(() => {
   .bunny-icon { font-size: 3rem; }
   .scroll-hint { font-size: 1.1rem; }
   .lottie-bunny { width: 120px !important; height: 120px !important; }
+  .collage-photo { width: 100px !important; height: 120px !important; }
 }
 </style>
