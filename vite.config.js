@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   plugins: [vue()],
-  base: './emily-invitacion/',
+  base: '/emily-invitacion/',
   build: {
     outDir: 'docs'
   }
