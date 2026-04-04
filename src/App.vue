@@ -5,12 +5,12 @@
       <div class="hero-bg" :style="{ backgroundImage: 'url(https://images.unsplash.com/photo-1596464716127-f9a82b294132?w=800)' }"></div>
       <div class="hero-overlay"></div>
       <div class="clouds-container">
-        <img v-for="n in 12" :key="'hero-'+n" :src="'https://oliver404.github.io/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
+        <img v-for="n in 12" :key="'hero-'+n" :src="'./emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="lottie-bunny">
         <lottie-player 
-          src="https://oliver404.github.io/emily-invitacion/pastel.json"
+          src="./emily-invitacion/pastel.json"
           background="transparent"
           speed="1"
           style="width: 200px; height: 200px;"
@@ -21,7 +21,7 @@
       <div class="hero-content">
         <div class="lottie-in-content">
           <lottie-player 
-            src="https://oliver404.github.io/emily-invitacion/conejito.json"
+            src="./emily-invitacion/conejito.json"
             background="transparent"
             speed="1"
             style="width: 100px; height: 100px;"
