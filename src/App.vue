@@ -5,10 +5,8 @@
       <div class="hero-bg" :style="{ backgroundImage: 'url(https://images.unsplash.com/photo-1596464716127-f9a82b294132?w=800)' }"></div>
       <div class="hero-overlay"></div>
       <div class="clouds-container">
-        <img src="/images/cloud1.png" class="cloud cloud1" alt="cloud">
-        <img src="/images/cloud2.png" class="cloud cloud2" alt="cloud">
-        <img src="/images/cloud3.png" class="cloud cloud3" alt="cloud">
-        <img src="/images/cloud4.png" class="cloud cloud4" alt="cloud">
+        <img v-for="n in 12" :key="'hero-'+n" :src="'/images/cloud' + ((n-1)%4+1) + '.png'" 
+             class="cloud" :class="'cloud-' + n" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="lottie-bunny">
         <lottie-player 
@@ -33,10 +31,8 @@
     <!-- Section 2: Fecha -->
     <section class="section fecha" id="fecha">
       <div class="clouds-container">
-        <img src="/images/cloud1.png" class="cloud cloud1" alt="cloud">
-        <img src="/images/cloud2.png" class="cloud cloud2" alt="cloud">
-        <img src="/images/cloud3.png" class="cloud cloud3" alt="cloud">
-        <img src="/images/cloud4.png" class="cloud cloud4" alt="cloud">
+        <img v-for="n in 12" :key="'fecha-'+n" :src="'/images/cloud' + ((n-1)%4+1) + '.png'" 
+             class="cloud" :class="'cloud-' + n" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="section-content">
         <div class="icon">🎉</div>
@@ -51,10 +47,8 @@
     <!-- Section 3: Ubicación -->
     <section class="section ubicacion" id="ubicacion">
       <div class="clouds-container">
-        <img src="/images/cloud1.png" class="cloud cloud1" alt="cloud">
-        <img src="/images/cloud2.png" class="cloud cloud2" alt="cloud">
-        <img src="/images/cloud3.png" class="cloud cloud3" alt="cloud">
-        <img src="/images/cloud4.png" class="cloud cloud4" alt="cloud">
+        <img v-for="n in 12" :key="'ubi-'+n" :src="'/images/cloud' + ((n-1)%4+1) + '.png'" 
+             class="cloud" :class="'cloud-' + n" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="bg-image" :style="{ backgroundImage: 'url(https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800)' }"></div>
       <div class="overlay"></div>
@@ -65,7 +59,6 @@
           <div class="place">{{ data.evento.ubicacion.lugar }}</div>
           <div class="address">{{ data.evento.ubicacion.dirección }}</div>
           <div class="city">{{ data.evento.ubicacion.ciudad }}</div>
-          
           <div class="map-container">
             <iframe 
               width="100%" 
@@ -77,7 +70,6 @@
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.5!2d-99.1332!3d19.4326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDI1JzU4LjEiTiA5OUoxMzMsMjAuNTYY!5e0!3m2!1ses!2smx!4v1">
             </iframe>
           </div>
-          
           <a :href="mapsUrl" target="_blank" class="directions-btn">
             📍 Cómo llegar
           </a>
@@ -88,10 +80,8 @@
     <!-- Section 4: Dress Code -->
     <section class="section dresscode" id="dresscode">
       <div class="clouds-container">
-        <img src="/images/cloud1.png" class="cloud cloud1" alt="cloud">
-        <img src="/images/cloud2.png" class="cloud cloud2" alt="cloud">
-        <img src="/images/cloud3.png" class="cloud cloud3" alt="cloud">
-        <img src="/images/cloud4.png" class="cloud cloud4" alt="cloud">
+        <img v-for="n in 12" :key="'dress-'+n" :src="'/images/cloud' + ((n-1)%4+1) + '.png'" 
+             class="cloud" :class="'cloud-' + n" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="bg-image" :style="{ backgroundImage: 'url(' + data.fotos.dressCode + ')' }"></div>
       <div class="overlay"></div>
@@ -115,10 +105,8 @@
     <!-- Section 5: RSVP -->
     <section class="section rsvp" id="rsvp">
       <div class="clouds-container">
-        <img src="/images/cloud1.png" class="cloud cloud1" alt="cloud">
-        <img src="/images/cloud2.png" class="cloud cloud2" alt="cloud">
-        <img src="/images/cloud3.png" class="cloud cloud3" alt="cloud">
-        <img src="/images/cloud4.png" class="cloud cloud4" alt="cloud">
+        <img v-for="n in 12" :key="'rsvp-'+n" :src="'/images/cloud' + ((n-1)%4+1) + '.png'" 
+             class="cloud" :class="'cloud-' + n" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="section-content">
         <div class="icon">💌</div>
@@ -165,20 +153,42 @@ import data from './data/invitacion.json'
 
 const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(data.evento.ubicacion.lugar + ' ' + data.evento.ubicacion.dirección + ' ' + data.evento.ubicacion.ciudad)}`
 
-// Fewer photos, more vertical spacing
+// Cloud parallax - varied sizes and positions
+const getCloudStyle = (n) => {
+  // Varied sizes
+  const sizes = [60, 90, 120, 80, 140, 100, 70, 130, 110, 95, 85, 125]
+  // Vertical distribution (0% to 80% of screen height)
+  const topPositions = [5, 15, 25, 35, 45, 55, 65, 75, 10, 30, 50, 70]
+  // Speeds (parallax effect - faster = further away = smaller)
+  const speeds = [25, 20, 15, 22, 12, 18, 28, 14, 16, 24, 19, 13]
+  // Delays
+  const delays = [0, -5, -10, -3, -8, -15, -2, -12, -7, -4, -11, -6]
+  
+  const size = sizes[n-1]
+  const top = topPositions[n-1]
+  const speed = speeds[n-1]
+  const delay = delays[n-1]
+  
+  return {
+    width: size + 'px',
+    top: top + '%',
+    animationDuration: speed + 's',
+    animationDelay: delay + 's',
+    opacity: size > 100 ? 1 : (size / 100) * 0.8 + 0.2
+  }
+}
+
+// Photo rain - fewer photos
 const photoRain = ref([])
 
 onMounted(() => {
   const photos = []
-  // Only 10 photos, spread vertically
   for (let i = 0; i < 10; i++) {
-    // Spread across screen width with gaps
-    const xBase = 5 + (i * 9)  // 5%, 14%, 23%, 32%, 41%, 50%, 59%, 68%, 77%, 86%
-    
+    const xBase = 5 + (i * 9)
     photos.push({
       src: data.fotos.galeria[i % data.fotos.galeria.length],
-      x: xBase + (Math.random() * 4 - 2),  // ±2% variation
-      delay: i * 1.2,  // More space between each photo appearing
+      x: xBase + (Math.random() * 4 - 2),
+      delay: i * 1.2,
       width: 70 + Math.random() * 30,
       height: 90 + Math.random() * 40
     })
@@ -220,7 +230,7 @@ onMounted(() => {
   50% { transform: translateY(-10px); }
 }
 
-/* Clouds using img tags - visible immediately */
+/* Clouds with parallax effect */
 .clouds-container {
   position: absolute;
   top: 0;
@@ -234,44 +244,14 @@ onMounted(() => {
 
 .cloud {
   position: absolute;
-  animation: cloudFloat 20s infinite linear;
-}
-
-.cloud1 { 
-  width: 120px; 
-  top: 8%; 
-  left: 5%;
-  animation-duration: 18s;
-  animation-delay: 0s;
-}
-
-.cloud2 { 
-  width: 100px; 
-  top: 25%; 
-  left: 25%;
-  animation-duration: 22s;
-  animation-delay: -6s;
-}
-
-.cloud3 { 
-  width: 130px; 
-  top: 15%; 
-  left: 50%;
-  animation-duration: 20s;
-  animation-delay: -12s;
-}
-
-.cloud4 { 
-  width: 110px; 
-  top: 30%; 
-  left: 75%;
-  animation-duration: 25s;
-  animation-delay: -4s;
+  left: -150px;
+  animation: cloudFloat linear infinite;
+  will-change: transform;
 }
 
 @keyframes cloudFloat {
-  from { transform: translateX(-150px); }
-  to { transform: translateX(calc(100vw + 50px)); }
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(100vw + 300px)); }
 }
 
 /* Background images */
@@ -451,9 +431,7 @@ onMounted(() => {
   margin: 5px 0;
 }
 
-.map-container {
-  margin: 15px 0;
-}
+.map-container { margin: 15px 0; }
 
 .directions-btn {
   display: inline-block;
@@ -467,9 +445,7 @@ onMounted(() => {
   transition: transform 0.3s;
 }
 
-.directions-btn:hover {
-  transform: scale(1.05);
-}
+.directions-btn:hover { transform: scale(1.05); }
 
 /* Dress Code */
 .dresscode {
@@ -522,9 +498,7 @@ onMounted(() => {
   transition: transform 0.3s;
 }
 
-.rsvp-btn:hover {
-  transform: scale(1.05);
-}
+.rsvp-btn:hover { transform: scale(1.05); }
 
 .contact {
   margin-top: 15px;
@@ -533,7 +507,7 @@ onMounted(() => {
   color: #555;
 }
 
-/* Fotos - Fewer photos, more vertical spacing */
+/* Fotos */
 .fotos {
   background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
 }
@@ -579,6 +553,5 @@ onMounted(() => {
   .bunny-icon { font-size: 3rem; }
   .scroll-hint { font-size: 1.1rem; }
   .lottie-bunny { width: 120px !important; height: 120px !important; }
-  .cloud { width: 80px !important; }
 }
 </style>
