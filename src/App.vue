@@ -123,7 +123,7 @@
 
     <!-- Section 6: Fotos Recuerdos -->
     <section class="section fotos" id="fotos">
-      <div class="photo-rain-container" id="parallax-container">
+      <div class="parallax-container" id="parallax-container">
         <img 
           v-for="(photo, index) in photos" 
           :key="index"
@@ -161,49 +161,62 @@ const getCloudStyle = (n) => {
   }
 }
 
-// Photos for parallax rain - same approach as the user's code
+// Parallax rain with lanes - avoiding overlaps
 const photos = ref([])
 
 onMounted(() => {
-  // Duplicate photos to have more images
+  // Duplicate photos for more images
   const allPhotos = [
+    ...data.fotos.galeria,
     ...data.fotos.galeria,
     ...data.fotos.galeria,
     ...data.fotos.galeria
   ]
   
-  const photoList = allPhotos.map((url, index) => ({
-    id: index,
-    url: url
-  }))
+  // 5 lanes (horizontal positions)
+  const lanes = [5, 25, 45, 65, 80]
+  
+  // Track accumulated delay per lane
+  let delaysPerLane = [
+    Math.random() * 2,
+    Math.random() * 2,
+    Math.random() * 2,
+    Math.random() * 2,
+    Math.random() * 2
+  ]
   
   const generatedPhotos = []
   
-  photoList.forEach((photo) => {
-    // Horizontal position: 5% to 85%
-    const randomLeft = Math.floor(Math.random() * 80) + 5
+  allPhotos.forEach((url) => {
+    // Random lane selection
+    const laneIndex = Math.floor(Math.random() * lanes.length)
+    const laneBase = lanes[laneIndex]
     
-    // Duration: 8 to 20 seconds
-    const randomDuration = Math.floor(Math.random() * 12) + 8
+    // Small variation so not perfectly aligned in lane
+    const xVariation = Math.floor(Math.random() * 10) - 5
+    const finalLeft = laneBase + xVariation
     
-    // Delay: 0 to 10 seconds
-    const randomDelay = Math.random() * 10
+    // Use accumulated delay for this lane
+    const finalDelay = delaysPerLane[laneIndex]
     
-    // Width: 100px to 160px (smaller = further = slower parallax)
+    // Update delay for next photo in same lane (2.5-4.5s gap)
+    delaysPerLane[laneIndex] += (Math.random() * 2) + 2.5
+    
+    // Duration: 12-27 seconds (parallax effect)
+    const randomDuration = Math.floor(Math.random() * 15) + 12
+    
+    // Width: 100-160px
     const randomWidth = Math.floor(Math.random() * 60) + 100
     
-    // z-index based on width (larger = closer = on top)
-    const zIndex = Math.floor(randomWidth / 10)
-    
     generatedPhotos.push({
-      url: photo.url,
+      url: url,
       style: {
-        left: randomLeft + '%',
+        left: finalLeft + '%',
         animationDuration: randomDuration + 's',
-        animationDelay: randomDelay + 's',
+        animationDelay: finalDelay + 's',
         width: randomWidth + 'px',
         height: (randomWidth * 1.2) + 'px',
-        zIndex: zIndex
+        zIndex: Math.floor(randomWidth / 10)
       }
     })
   })
@@ -522,12 +535,12 @@ onMounted(() => {
   color: #555;
 }
 
-/* Fotos - Parallax Rain */
+/* Fotos - Parallax with lanes */
 .fotos {
   background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
 }
 
-.photo-rain-container {
+.parallax-container {
   position: absolute;
   top: 0;
   left: 0;
