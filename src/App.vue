@@ -355,8 +355,8 @@ onMounted(() => {
 }
 
 .lottie-in-content lottie-player {
-  width: 250px !important;
-  height: 250px !important;
+  width: 200px !important;
+  height: 200px !important;
 }
 
 .bunny-icon {
