@@ -50,6 +50,12 @@
 
     <!-- Section 3: Ubicación -->
     <section class="section ubicacion" id="ubicacion">
+      <div class="clouds">
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+        <div class="cloud cloud4"></div>
+      </div>
       <div class="bg-image" :style="{ backgroundImage: 'url(https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800)' }"></div>
       <div class="overlay"></div>
       <div class="section-content">
@@ -81,6 +87,12 @@
 
     <!-- Section 4: Dress Code -->
     <section class="section dresscode" id="dresscode">
+      <div class="clouds">
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+        <div class="cloud cloud4"></div>
+      </div>
       <div class="bg-image" :style="{ backgroundImage: 'url(' + data.fotos.dressCode + ')' }"></div>
       <div class="overlay"></div>
       <div class="lottie-overlay">
@@ -154,21 +166,30 @@ import data from './data/invitacion.json'
 
 const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(data.evento.ubicacion.lugar + ' ' + data.evento.ubicacion.dirección + ' ' + data.evento.ubicacion.ciudad)}`
 
-// Photo rain effect
+// Photo rain - better distributed across screen
 const photoRain = ref([])
 
 onMounted(() => {
   const photos = []
-  const allPhotos = [...data.fotos.galeria, ...data.fotos.galeria, ...data.fotos.galeria, ...data.fotos.galeria]
+  // Distribute photos evenly across the screen width
+  const columns = 6  // 6 columns
+  const rows = 4     // 4 rows
   
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 24; i++) {
+    const col = i % columns
+    const row = Math.floor(i / columns)
+    
+    // Calculate position to spread evenly
+    const xBase = (col / columns) * 80 + 5  // 5% to 85% range
+    const xOffset = (Math.random() - 0.5) * 8  // ±4% variation
+    
     photos.push({
-      src: allPhotos[i % allPhotos.length],
-      x: Math.random() * 85 + 5,
-      delay: Math.random() * 8,
-      duration: 8 + Math.random() * 4,
-      width: 80 + Math.random() * 100,
-      height: 100 + Math.random() * 80
+      src: data.fotos.galeria[i % data.fotos.galeria.length],
+      x: Math.max(3, Math.min(82, xBase + xOffset)),
+      delay: row * 1.5 + Math.random() * 0.5,  // Stagger by row
+      duration: 10 + Math.random() * 2,
+      width: 90 + Math.random() * 40,
+      height: 110 + Math.random() * 50
     })
   }
   photoRain.value = photos
@@ -208,7 +229,7 @@ onMounted(() => {
   50% { transform: translateY(-10px); }
 }
 
-/* Clouds */
+/* Clouds - all sections */
 .clouds {
   position: absolute;
   top: 0;
@@ -247,6 +268,7 @@ onMounted(() => {
   height: 100%;
   background-size: cover;
   background-position: center;
+  z-index: 0;
 }
 
 .overlay, .hero-overlay {
@@ -256,6 +278,7 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   background: rgba(255, 182, 193, 0.6);
+  z-index: 0;
 }
 
 .lottie-overlay {
@@ -275,11 +298,7 @@ onMounted(() => {
   z-index: 3;
 }
 
-/* Hero with background */
-.hero {
-  position: relative;
-}
-
+/* Hero */
 .hero-bg {
   position: absolute;
   top: 0;
@@ -288,6 +307,7 @@ onMounted(() => {
   height: 100%;
   background-size: cover;
   background-position: center;
+  z-index: 0;
 }
 
 .hero-content {
@@ -498,7 +518,7 @@ onMounted(() => {
   color: #555;
 }
 
-/* Fotos - Photo Rain */
+/* Fotos - Photo Rain - better distributed */
 .fotos {
   background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
 }
@@ -531,9 +551,9 @@ onMounted(() => {
 
 @keyframes rainFloat {
   0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateY(-120vh) rotate(10deg); opacity: 0; }
+  5% { opacity: 1; }
+  95% { opacity: 1; }
+  100% { transform: translateY(-130vh) rotate(15deg); opacity: 0; }
 }
 
 /* Responsive */
