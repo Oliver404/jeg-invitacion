@@ -10,7 +10,7 @@
       </div>
       <div class="lottie-bunny">
         <lottie-player 
-          src="./emily-invitacion/pastel.json"
+          src="https://oliver404.github.io/emily-invitacion/bunny.json"
           background="transparent"
           speed="1"
           style="width: 200px; height: 200px;"
@@ -21,7 +21,7 @@
       <div class="hero-content">
         <div class="lottie-in-content">
           <lottie-player 
-            src="./emily-invitacion/conejito.json"
+            src="https://oliver404.github.io/emily-invitacion/bunny.json"
             background="transparent"
             speed="1"
             style="width: 100px; height: 100px;"
