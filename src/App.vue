@@ -10,7 +10,7 @@
       </div>
       <div class="lottie-bunny">
         <lottie-player 
-          src="/bunny.json"
+          src="https://oliver404.github.io/emily-invitacion/bunny.json"
           background="transparent"
           speed="1"
           style="width: 200px; height: 200px;"
