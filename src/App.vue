@@ -5,7 +5,7 @@
       <div class="hero-bg" :style="{ backgroundImage: 'url(https://images.unsplash.com/photo-1596464716127-f9a82b294132?w=800)' }"></div>
       <div class="hero-overlay"></div>
       <div class="clouds-container">
-        <img v-for="n in 12" :key="'hero-'+n" :src="'./images/cloud' + ((n-1)%4+1) + '.png'" 
+        <img v-for="n in 12" :key="'hero-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="lottie-bunny">
@@ -40,7 +40,7 @@
     <!-- Section 2: Fecha -->
     <section class="section fecha" id="fecha">
       <div class="clouds-container">
-        <img v-for="n in 12" :key="'fecha-'+n" :src="'/images/cloud' + ((n-1)%4+1) + '.png'" 
+        <img v-for="n in 12" :key="'fecha-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="section-content">
@@ -56,7 +56,7 @@
     <!-- Section 3: Ubicación -->
     <section class="section ubicacion" id="ubicacion">
       <div class="clouds-container">
-        <img v-for="n in 12" :key="'ubi-'+n" :src="'/images/cloud' + ((n-1)%4+1) + '.png'" 
+        <img v-for="n in 12" :key="'ubi-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="bg-image" :style="{ backgroundImage: 'url(https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800)' }"></div>
@@ -89,14 +89,14 @@
     <!-- Section 4: Dress Code -->
     <section class="section dresscode" id="dresscode">
       <div class="clouds-container">
-        <img v-for="n in 12" :key="'dress-'+n" :src="'/images/cloud' + ((n-1)%4+1) + '.png'" 
+        <img v-for="n in 12" :key="'dress-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="bg-image" :style="{ backgroundImage: 'url(' + data.fotos.dressCode + ')' }"></div>
       <div class="overlay"></div>
       <!-- <div class="lottie-overlay">
         <lottie-player 
-          src="https://oliver404.github.io/emily-invitacion/bunny.json"
+          src="/emily-invitacion/conejito.json"
           background="transparent"
           speed="1"
           style="width: 100%; height: 100%; position: absolute;"
@@ -114,7 +114,7 @@
     <!-- Section 5: RSVP -->
     <section class="section rsvp" id="rsvp">
       <div class="clouds-container">
-        <img v-for="n in 12" :key="'rsvp-'+n" :src="'/images/cloud' + ((n-1)%4+1) + '.png'" 
+        <img v-for="n in 12" :key="'rsvp-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="section-content">
@@ -349,6 +349,14 @@ onMounted(() => {
 
 .lottie-in-content {
   margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lottie-in-content lottie-player {
+  width: 250px !important;
+  height: 250px !important;
 }
 
 .bunny-icon {
