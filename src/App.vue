@@ -40,7 +40,7 @@
     <!-- Section 2: Fecha -->
     <section class="section fecha" id="fecha">
       <div class="clouds-container">
-        <img v-for="n in 12" :key="'fecha-'+n" :src="'/images/cloud' + ((n-1)%4+1) + '.png'" 
+        <img v-for="n in 12" :key="'fecha-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="section-content">
@@ -56,7 +56,7 @@
     <!-- Section 3: Ubicación -->
     <section class="section ubicacion" id="ubicacion">
       <div class="clouds-container">
-        <img v-for="n in 12" :key="'ubi-'+n" :src="'/images/cloud' + ((n-1)%4+1) + '.png'" 
+        <img v-for="n in 12" :key="'ubi-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="bg-image" :style="{ backgroundImage: 'url(https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800)' }"></div>
@@ -89,7 +89,7 @@
     <!-- Section 4: Dress Code -->
     <section class="section dresscode" id="dresscode">
       <div class="clouds-container">
-        <img v-for="n in 12" :key="'dress-'+n" :src="'/images/cloud' + ((n-1)%4+1) + '.png'" 
+        <img v-for="n in 12" :key="'dress-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="bg-image" :style="{ backgroundImage: 'url(' + data.fotos.dressCode + ')' }"></div>
@@ -114,7 +114,7 @@
     <!-- Section 5: RSVP -->
     <section class="section rsvp" id="rsvp">
       <div class="clouds-container">
-        <img v-for="n in 12" :key="'rsvp-'+n" :src="'/images/cloud' + ((n-1)%4+1) + '.png'" 
+        <img v-for="n in 12" :key="'rsvp-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="section-content">
