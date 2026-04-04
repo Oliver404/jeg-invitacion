@@ -10,7 +10,7 @@
       </div>
       <div class="lottie-bunny">
         <lottie-player 
-          src="https://assets2.lottiefiles.com/packages/lf20_touohxv0.json"
+          src="/bunny.json"
           background="transparent"
           speed="1"
           style="width: 200px; height: 200px;"
@@ -19,7 +19,16 @@
         />
       </div>
       <div class="hero-content">
-        <div class="bunny-icon">🐰</div>
+        <div class="lottie-in-content">
+          <lottie-player 
+            src="/bunny.json"
+            background="transparent"
+            speed="1"
+            style="width: 100px; height: 100px;"
+            loop
+            autoplay
+          />
+        </div>
         <h1 class="hero-title">{{ data.evento.titulo }}</h1>
         <p class="hero-subtitle">{{ data.evento.subtitulo }}</p>
         <div class="hero-name">{{ data.cumpleañero.nombre }}</div>
@@ -336,6 +345,10 @@ onMounted(() => {
 .hero-content {
   text-align: center;
   z-index: 2;
+}
+
+.lottie-in-content {
+  margin-bottom: 0.5rem;
 }
 
 .bunny-icon {
