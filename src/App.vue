@@ -4,11 +4,11 @@
     <section class="section hero" id="hero">
       <div class="hero-bg" :style="{ backgroundImage: 'url(https://images.unsplash.com/photo-1596464716127-f9a82b294132?w=800)' }"></div>
       <div class="hero-overlay"></div>
-      <div class="clouds">
-        <div class="cloud cloud1"></div>
-        <div class="cloud cloud2"></div>
-        <div class="cloud cloud3"></div>
-        <div class="cloud cloud4"></div>
+      <div class="clouds-container">
+        <img src="/images/cloud1.png" class="cloud cloud1" alt="cloud">
+        <img src="/images/cloud2.png" class="cloud cloud2" alt="cloud">
+        <img src="/images/cloud3.png" class="cloud cloud3" alt="cloud">
+        <img src="/images/cloud4.png" class="cloud cloud4" alt="cloud">
       </div>
       <div class="lottie-bunny">
         <lottie-player 
@@ -32,11 +32,11 @@
 
     <!-- Section 2: Fecha -->
     <section class="section fecha" id="fecha">
-      <div class="clouds">
-        <div class="cloud cloud1"></div>
-        <div class="cloud cloud2"></div>
-        <div class="cloud cloud3"></div>
-        <div class="cloud cloud4"></div>
+      <div class="clouds-container">
+        <img src="/images/cloud1.png" class="cloud cloud1" alt="cloud">
+        <img src="/images/cloud2.png" class="cloud cloud2" alt="cloud">
+        <img src="/images/cloud3.png" class="cloud cloud3" alt="cloud">
+        <img src="/images/cloud4.png" class="cloud cloud4" alt="cloud">
       </div>
       <div class="section-content">
         <div class="icon">🎉</div>
@@ -50,11 +50,11 @@
 
     <!-- Section 3: Ubicación -->
     <section class="section ubicacion" id="ubicacion">
-      <div class="clouds">
-        <div class="cloud cloud1"></div>
-        <div class="cloud cloud2"></div>
-        <div class="cloud cloud3"></div>
-        <div class="cloud cloud4"></div>
+      <div class="clouds-container">
+        <img src="/images/cloud1.png" class="cloud cloud1" alt="cloud">
+        <img src="/images/cloud2.png" class="cloud cloud2" alt="cloud">
+        <img src="/images/cloud3.png" class="cloud cloud3" alt="cloud">
+        <img src="/images/cloud4.png" class="cloud cloud4" alt="cloud">
       </div>
       <div class="bg-image" :style="{ backgroundImage: 'url(https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800)' }"></div>
       <div class="overlay"></div>
@@ -87,11 +87,11 @@
 
     <!-- Section 4: Dress Code -->
     <section class="section dresscode" id="dresscode">
-      <div class="clouds">
-        <div class="cloud cloud1"></div>
-        <div class="cloud cloud2"></div>
-        <div class="cloud cloud3"></div>
-        <div class="cloud cloud4"></div>
+      <div class="clouds-container">
+        <img src="/images/cloud1.png" class="cloud cloud1" alt="cloud">
+        <img src="/images/cloud2.png" class="cloud cloud2" alt="cloud">
+        <img src="/images/cloud3.png" class="cloud cloud3" alt="cloud">
+        <img src="/images/cloud4.png" class="cloud cloud4" alt="cloud">
       </div>
       <div class="bg-image" :style="{ backgroundImage: 'url(' + data.fotos.dressCode + ')' }"></div>
       <div class="overlay"></div>
@@ -114,11 +114,11 @@
 
     <!-- Section 5: RSVP -->
     <section class="section rsvp" id="rsvp">
-      <div class="clouds">
-        <div class="cloud cloud1"></div>
-        <div class="cloud cloud2"></div>
-        <div class="cloud cloud3"></div>
-        <div class="cloud cloud4"></div>
+      <div class="clouds-container">
+        <img src="/images/cloud1.png" class="cloud cloud1" alt="cloud">
+        <img src="/images/cloud2.png" class="cloud cloud2" alt="cloud">
+        <img src="/images/cloud3.png" class="cloud cloud3" alt="cloud">
+        <img src="/images/cloud4.png" class="cloud cloud4" alt="cloud">
       </div>
       <div class="section-content">
         <div class="icon">💌</div>
@@ -143,7 +143,6 @@
           :style="{
             left: foto.x + '%',
             animationDelay: foto.delay + 's',
-            animationDuration: foto.duration + 's',
             width: foto.width + 'px',
             height: foto.height + 'px',
             zIndex: index
@@ -166,30 +165,22 @@ import data from './data/invitacion.json'
 
 const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(data.evento.ubicacion.lugar + ' ' + data.evento.ubicacion.dirección + ' ' + data.evento.ubicacion.ciudad)}`
 
-// Photo rain - better distributed across screen
+// Fewer photos, more vertical spacing
 const photoRain = ref([])
 
 onMounted(() => {
   const photos = []
-  // Distribute photos evenly across the screen width
-  const columns = 6  // 6 columns
-  const rows = 4     // 4 rows
-  
-  for (let i = 0; i < 24; i++) {
-    const col = i % columns
-    const row = Math.floor(i / columns)
-    
-    // Calculate position to spread evenly
-    const xBase = (col / columns) * 80 + 5  // 5% to 85% range
-    const xOffset = (Math.random() - 0.5) * 8  // ±4% variation
+  // Only 10 photos, spread vertically
+  for (let i = 0; i < 10; i++) {
+    // Spread across screen width with gaps
+    const xBase = 5 + (i * 9)  // 5%, 14%, 23%, 32%, 41%, 50%, 59%, 68%, 77%, 86%
     
     photos.push({
       src: data.fotos.galeria[i % data.fotos.galeria.length],
-      x: Math.max(3, Math.min(82, xBase + xOffset)),
-      delay: row * 1.5 + Math.random() * 0.5,  // Stagger by row
-      duration: 10 + Math.random() * 2,
-      width: 90 + Math.random() * 40,
-      height: 110 + Math.random() * 50
+      x: xBase + (Math.random() * 4 - 2),  // ±2% variation
+      delay: i * 1.2,  // More space between each photo appearing
+      width: 70 + Math.random() * 30,
+      height: 90 + Math.random() * 40
     })
   }
   photoRain.value = photos
@@ -229,8 +220,8 @@ onMounted(() => {
   50% { transform: translateY(-10px); }
 }
 
-/* Clouds - all sections */
-.clouds {
+/* Clouds using img tags - visible immediately */
+.clouds-container {
   position: absolute;
   top: 0;
   left: 0;
@@ -243,20 +234,44 @@ onMounted(() => {
 
 .cloud {
   position: absolute;
-  background-size: contain;
-  background-repeat: no-repeat;
-  animation: float 20s infinite linear;
-  opacity: 0.9;
+  animation: cloudFloat 20s infinite linear;
 }
 
-.cloud1 { left: 10%; top: 8%; background-image: url('/images/cloud1.png'); animation-duration: 18s; }
-.cloud2 { left: 30%; top: 20%; background-image: url('/images/cloud2.png'); animation-delay: -5s; animation-duration: 22s; }
-.cloud3 { left: 60%; top: 12%; background-image: url('/images/cloud3.png'); animation-delay: -10s; animation-duration: 20s; }
-.cloud4 { left: 80%; top: 25%; background-image: url('/images/cloud4.png'); animation-delay: -3s; animation-duration: 25s; }
+.cloud1 { 
+  width: 120px; 
+  top: 8%; 
+  left: 5%;
+  animation-duration: 18s;
+  animation-delay: 0s;
+}
 
-@keyframes float {
-  from { transform: translateX(-200px); }
-  to { transform: translateX(calc(100vw + 200px)); }
+.cloud2 { 
+  width: 100px; 
+  top: 25%; 
+  left: 25%;
+  animation-duration: 22s;
+  animation-delay: -6s;
+}
+
+.cloud3 { 
+  width: 130px; 
+  top: 15%; 
+  left: 50%;
+  animation-duration: 20s;
+  animation-delay: -12s;
+}
+
+.cloud4 { 
+  width: 110px; 
+  top: 30%; 
+  left: 75%;
+  animation-duration: 25s;
+  animation-delay: -4s;
+}
+
+@keyframes cloudFloat {
+  from { transform: translateX(-150px); }
+  to { transform: translateX(calc(100vw + 50px)); }
 }
 
 /* Background images */
@@ -518,7 +533,7 @@ onMounted(() => {
   color: #555;
 }
 
-/* Fotos - Photo Rain - better distributed */
+/* Fotos - Fewer photos, more vertical spacing */
 .fotos {
   background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
 }
@@ -535,11 +550,11 @@ onMounted(() => {
 
 .rain-photo {
   position: absolute;
-  bottom: -200px;
+  bottom: -150px;
   border-radius: 10px;
   border: 3px solid #fff;
   box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-  animation: rainFloat linear infinite;
+  animation: rainFloat 12s linear infinite;
 }
 
 .rain-photo img {
@@ -553,7 +568,7 @@ onMounted(() => {
   0% { transform: translateY(0) rotate(0deg); opacity: 0; }
   5% { opacity: 1; }
   95% { opacity: 1; }
-  100% { transform: translateY(-130vh) rotate(15deg); opacity: 0; }
+  100% { transform: translateY(-140vh) rotate(10deg); opacity: 0; }
 }
 
 /* Responsive */
@@ -564,5 +579,6 @@ onMounted(() => {
   .bunny-icon { font-size: 3rem; }
   .scroll-hint { font-size: 1.1rem; }
   .lottie-bunny { width: 120px !important; height: 120px !important; }
+  .cloud { width: 80px !important; }
 }
 </style>
