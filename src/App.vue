@@ -6,6 +6,7 @@
         <div class="cloud cloud1"></div>
         <div class="cloud cloud2"></div>
         <div class="cloud cloud3"></div>
+        <div class="cloud cloud4"></div>
       </div>
       <div class="lottie-bg">
         <lottie-player 
@@ -33,6 +34,7 @@
         <div class="cloud cloud1"></div>
         <div class="cloud cloud2"></div>
         <div class="cloud cloud3"></div>
+        <div class="cloud cloud4"></div>
       </div>
       <div class="section-content">
         <div class="icon">🎉</div>
@@ -56,7 +58,6 @@
           <div class="address">{{ data.evento.ubicacion.dirección }}</div>
           <div class="city">{{ data.evento.ubicacion.ciudad }}</div>
           
-          <!-- Google Map -->
           <div class="map-container">
             <iframe 
               width="100%" 
@@ -103,6 +104,7 @@
         <div class="cloud cloud1"></div>
         <div class="cloud cloud2"></div>
         <div class="cloud cloud3"></div>
+        <div class="cloud cloud4"></div>
       </div>
       <div class="section-content">
         <div class="icon">💌</div>
@@ -150,7 +152,6 @@
 <script setup>
 import data from './data/invitacion.json'
 
-// Google Maps URL for directions
 const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(data.evento.ubicacion.lugar + ' ' + data.evento.ubicacion.dirección + ' ' + data.evento.ubicacion.ciudad)}`
 </script>
 
@@ -187,7 +188,7 @@ const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIC
   50% { transform: translateY(-10px); }
 }
 
-/* Clouds */
+/* Clouds with images */
 .clouds {
   position: absolute;
   top: 0;
@@ -200,63 +201,49 @@ const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIC
 
 .cloud {
   position: absolute;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
   animation: float 20s infinite linear;
 }
 
-.cloud::after {
-  content: '';
-  position: absolute;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
-}
-
 .cloud1 {
-  width: 100px;
-  height: 40px;
-  top: 10%;
-  left: -100px;
+  width: 150px;
+  height: 100px;
+  top: 5%;
+  left: -150px;
+  background-image: url('/images/cloud1.png');
   animation-delay: 0s;
-}
-
-.cloud1::after {
-  width: 50px;
-  height: 50px;
-  top: -25px;
-  left: 15px;
+  animation-duration: 18s;
 }
 
 .cloud2 {
-  width: 80px;
-  height: 30px;
-  top: 30%;
-  left: -80px;
-  animation-delay: -7s;
-  animation-duration: 25s;
-}
-
-.cloud2::after {
-  width: 40px;
-  height: 40px;
-  top: -20px;
-  left: 10px;
+  width: 120px;
+  height: 80px;
+  top: 25%;
+  left: -120px;
+  background-image: url('/images/cloud2.png');
+  animation-delay: -6s;
+  animation-duration: 22s;
 }
 
 .cloud3 {
-  width: 120px;
-  height: 45px;
-  top: 50%;
-  left: -120px;
-  animation-delay: -14s;
-  animation-duration: 30s;
+  width: 140px;
+  height: 90px;
+  top: 45%;
+  left: -140px;
+  background-image: url('/images/cloud3.png');
+  animation-delay: -12s;
+  animation-duration: 25s;
 }
 
-.cloud3::after {
-  width: 60px;
-  height: 60px;
-  top: -30px;
-  left: 25px;
+.cloud4 {
+  width: 130px;
+  height: 85px;
+  top: 65%;
+  left: -130px;
+  background-image: url('/images/cloud4.png');
+  animation-delay: -3s;
+  animation-duration: 20s;
 }
 
 @keyframes float {
@@ -542,5 +529,6 @@ const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIC
   .gallery { grid-template-columns: 1fr; }
   .bunny-icon { font-size: 3rem; }
   .scroll-hint { font-size: 1.1rem; }
+  .cloud { transform: scale(0.7); }
 }
 </style>
