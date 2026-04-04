@@ -2,18 +2,20 @@
   <main class="app">
     <!-- Section 1: Hero -->
     <section class="section hero" id="hero">
+      <div class="hero-bg" :style="{ backgroundImage: 'url(https://images.unsplash.com/photo-1596464716127-f9a82b294132?w=800)' }"></div>
+      <div class="hero-overlay"></div>
       <div class="clouds">
-        <div class="cloud cloud1" :style="getRandomSize(1)"></div>
-        <div class="cloud cloud2" :style="getRandomSize(2)"></div>
-        <div class="cloud cloud3" :style="getRandomSize(3)"></div>
-        <div class="cloud cloud4" :style="getRandomSize(4)"></div>
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+        <div class="cloud cloud4"></div>
       </div>
-      <div class="lottie-bg">
+      <div class="lottie-bunny">
         <lottie-player 
           src="https://assets2.lottiefiles.com/packages/lf20_touohxv0.json"
           background="transparent"
-          speed="0.8"
-          style="width: 100%; height: 100%; position: absolute; opacity: 0.5;"
+          speed="1"
+          style="width: 200px; height: 200px;"
           loop
           autoplay
         />
@@ -31,10 +33,10 @@
     <!-- Section 2: Fecha -->
     <section class="section fecha" id="fecha">
       <div class="clouds">
-        <div class="cloud cloud1" :style="getRandomSize(1)"></div>
-        <div class="cloud cloud2" :style="getRandomSize(2)"></div>
-        <div class="cloud cloud3" :style="getRandomSize(3)"></div>
-        <div class="cloud cloud4" :style="getRandomSize(4)"></div>
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+        <div class="cloud cloud4"></div>
       </div>
       <div class="section-content">
         <div class="icon">🎉</div>
@@ -101,10 +103,10 @@
     <!-- Section 5: RSVP -->
     <section class="section rsvp" id="rsvp">
       <div class="clouds">
-        <div class="cloud cloud1" :style="getRandomSize(1)"></div>
-        <div class="cloud cloud2" :style="getRandomSize(2)"></div>
-        <div class="cloud cloud3" :style="getRandomSize(3)"></div>
-        <div class="cloud cloud4" :style="getRandomSize(4)"></div>
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+        <div class="cloud cloud4"></div>
       </div>
       <div class="section-content">
         <div class="icon">💌</div>
@@ -152,25 +154,10 @@ import data from './data/invitacion.json'
 
 const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(data.evento.ubicacion.lugar + ' ' + data.evento.ubicacion.dirección + ' ' + data.evento.ubicacion.ciudad)}`
 
-// Random cloud sizes
-const getRandomSize = (seed) => {
-  const sizes = [
-    { width: '120px', height: '80px' },
-    { width: '150px', height: '100px' },
-    { width: '100px', height: '70px' },
-    { width: '180px', height: '120px' },
-    { width: '130px', height: '90px' },
-    { width: '160px', height: '110px' }
-  ]
-  const index = (seed * 7 + Math.floor(Math.random() * 6)) % sizes.length
-  return sizes[index]
-}
-
 // Photo rain effect
 const photoRain = ref([])
 
 onMounted(() => {
-  // Create 20 photos for rain effect
   const photos = []
   const allPhotos = [...data.fotos.galeria, ...data.fotos.galeria, ...data.fotos.galeria, ...data.fotos.galeria]
   
@@ -221,7 +208,7 @@ onMounted(() => {
   50% { transform: translateY(-10px); }
 }
 
-/* Clouds - visible immediately */
+/* Clouds */
 .clouds {
   position: absolute;
   top: 0;
@@ -230,6 +217,7 @@ onMounted(() => {
   height: 100%;
   pointer-events: none;
   overflow: hidden;
+  z-index: 1;
 }
 
 .cloud {
@@ -240,46 +228,17 @@ onMounted(() => {
   opacity: 0.9;
 }
 
-/* Start clouds visible immediately */
-.cloud1 {
-  left: 10%;
-  top: 8%;
-  background-image: url('/images/cloud1.png');
-  animation-delay: 0s;
-  animation-duration: 18s;
-  animation-play-state: running;
-}
-
-.cloud2 {
-  left: 30%;
-  top: 20%;
-  background-image: url('/images/cloud2.png');
-  animation-delay: -5s;
-  animation-duration: 22s;
-}
-
-.cloud3 {
-  left: 60%;
-  top: 12%;
-  background-image: url('/images/cloud3.png');
-  animation-delay: -10s;
-  animation-duration: 20s;
-}
-
-.cloud4 {
-  left: 80%;
-  top: 25%;
-  background-image: url('/images/cloud4.png');
-  animation-delay: -3s;
-  animation-duration: 25s;
-}
+.cloud1 { left: 10%; top: 8%; background-image: url('/images/cloud1.png'); animation-duration: 18s; }
+.cloud2 { left: 30%; top: 20%; background-image: url('/images/cloud2.png'); animation-delay: -5s; animation-duration: 22s; }
+.cloud3 { left: 60%; top: 12%; background-image: url('/images/cloud3.png'); animation-delay: -10s; animation-duration: 20s; }
+.cloud4 { left: 80%; top: 25%; background-image: url('/images/cloud4.png'); animation-delay: -3s; animation-duration: 25s; }
 
 @keyframes float {
   from { transform: translateX(-200px); }
   to { transform: translateX(calc(100vw + 200px)); }
 }
 
-/* Background image */
+/* Background images */
 .bg-image {
   position: absolute;
   top: 0;
@@ -290,13 +249,13 @@ onMounted(() => {
   background-position: center;
 }
 
-.overlay {
+.overlay, .hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 182, 193, 0.7);
+  background: rgba(255, 182, 193, 0.6);
 }
 
 .lottie-overlay {
@@ -309,18 +268,26 @@ onMounted(() => {
   z-index: 1;
 }
 
-.lottie-bg {
+.lottie-bunny {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 3;
+}
+
+/* Hero with background */
+.hero {
+  position: relative;
+}
+
+.hero-bg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
-}
-
-/* Hero */
-.hero {
-  background: linear-gradient(135deg, #ffb6c1 0%, #ffc0cb 50%, #ff69b4 100%);
+  background-size: cover;
+  background-position: center;
 }
 
 .hero-content {
@@ -342,10 +309,7 @@ onMounted(() => {
   font-family: 'Baloo 2', cursive;
   font-size: 3rem;
   color: #fff;
-  text-shadow: 
-    2px 2px 4px rgba(0,0,0,0.5),
-    -1px -1px 2px rgba(0,0,0,0.3),
-    0 0 10px rgba(255,255,255,0.3);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   margin-bottom: 10px;
 }
 
@@ -362,9 +326,7 @@ onMounted(() => {
   font-size: 4rem;
   font-weight: bold;
   color: #fff;
-  text-shadow: 
-    3px 3px 0 #ff69b4,
-    2px 2px 6px rgba(0,0,0,0.5);
+  text-shadow: 3px 3px 0 #ff69b4, 2px 2px 6px rgba(0,0,0,0.5);
 }
 
 .hero-age {
@@ -403,9 +365,7 @@ onMounted(() => {
   font-family: 'Baloo 2', cursive;
   font-size: 2rem;
   color: #fff;
-  text-shadow: 
-    2px 2px 4px rgba(0,0,0,0.5),
-    0 0 10px rgba(255,255,255,0.3);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   margin-bottom: 20px;
 }
 
@@ -418,7 +378,7 @@ onMounted(() => {
   background: rgba(255,255,255,0.95);
   padding: 30px;
   border-radius: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15), 0 0 0 3px rgba(255,255,255,0.3);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 .date, .time {
@@ -438,7 +398,7 @@ onMounted(() => {
   background: rgba(255,255,255,0.95);
   padding: 25px;
   border-radius: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15), 0 0 0 3px rgba(255,255,255,0.3);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 .place {
@@ -454,7 +414,6 @@ onMounted(() => {
   font-size: 1.1rem;
   color: #555;
   margin: 5px 0;
-  text-shadow: 0 1px 1px rgba(255,255,255,0.8);
 }
 
 .map-container {
@@ -470,9 +429,7 @@ onMounted(() => {
   border-radius: 25px;
   font-family: 'Baloo 2', cursive;
   font-weight: bold;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
   transition: transform 0.3s;
-  box-shadow: 0 4px 15px rgba(255,105,180,0.4);
 }
 
 .directions-btn:hover {
@@ -497,7 +454,6 @@ onMounted(() => {
   font-size: 1.4rem;
   color: #ff69b4;
   font-weight: bold;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15), 0 0 0 3px rgba(255,255,255,0.3);
 }
 
 /* RSVP */
@@ -509,7 +465,7 @@ onMounted(() => {
   background: rgba(255,255,255,0.95);
   padding: 30px;
   border-radius: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15), 0 0 0 3px rgba(255,255,255,0.3);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 .rsvp-box p {
@@ -528,9 +484,7 @@ onMounted(() => {
   font-family: 'Baloo 2', cursive;
   font-weight: bold;
   font-size: 1.1rem;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
   transition: transform 0.3s;
-  box-shadow: 0 4px 15px rgba(255,105,180,0.4);
 }
 
 .rsvp-btn:hover {
@@ -576,20 +530,10 @@ onMounted(() => {
 }
 
 @keyframes rainFloat {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-120vh) rotate(10deg);
-    opacity: 0;
-  }
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-120vh) rotate(10deg); opacity: 0; }
 }
 
 /* Responsive */
@@ -599,5 +543,6 @@ onMounted(() => {
   .section h2 { font-size: 1.5rem; }
   .bunny-icon { font-size: 3rem; }
   .scroll-hint { font-size: 1.1rem; }
+  .lottie-bunny { width: 120px !important; height: 120px !important; }
 }
 </style>
