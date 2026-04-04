@@ -166,7 +166,7 @@ const getCloudStyle = (n) => {
     top: topPositions[n-1] + '%',
     animationDuration: speeds[n-1] + 's',
     animationDelay: delays[n-1] + 's',
-    opacity: size > 100 ? 1 : (size / 100) * 0.8 + 0.2
+    opacity: size > 100 ? 0.5 : (size / 100) * 0.4 + 0.1
   }
 }
 
