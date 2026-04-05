@@ -227,7 +227,7 @@ onMounted(() => {
   // Duplicate photos for more images
   const allPhotos = [
     ...data.fotos.galeria,
-    ...data.fotos.galeria,
+    // ...data.fotos.galeria,
     ...data.fotos.galeria
     // ...data.fotos.galeria
   ]
