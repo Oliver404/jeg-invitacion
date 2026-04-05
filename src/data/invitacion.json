@@ -7,18 +7,18 @@
   "evento": {
     "titulo": "¡Estás Invitado!",
     "subtitulo": "¡Ven a celebrar mi cumple!",
-    "fecha": "15 de Abril de 2026",
-    "hora": "16:00 hrs",
+    "fecha": "14 de Abril de 2026",
+    "hora": "",
     "ubicacion": {
-      "lugar": "Salón de Fiestas Bunny",
-      "dirección": "Av. Flores #123, Col. Jardín",
-      "ciudad": "Ciudad de México"
+      "lugar": "Jardin de Niños Popocatépetl",
+      "dirección": "",
+      "ciudad": ""
     },
-    "dressCode": "Rosa - Rosa chicle"
+    "dressCode": ""
   },
   "rsvp": {
-    "contacto": "Mamá: 55-1234-5678",
-    "whatsapp": "https://wa.me/5512345678"
+    "contacto": "",
+    "whatsapp": ""
   },
   "fotos": {
     "hero": "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=800",

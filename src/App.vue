@@ -13,7 +13,7 @@
           src="https://oliver404.github.io/emily-invitacion/conejito.json"
           background="transparent"
           speed="1"
-          style="width: 200px; height: 200px;"
+          style="width: 200px; height: 200px; bottom: 3rem; right: 3rem;"
           loop
           autoplay
         />
@@ -32,7 +32,7 @@
         <h1 class="hero-title">{{ data.evento.titulo }}</h1>
         <p class="hero-subtitle">{{ data.evento.subtitulo }}</p>
         <div class="hero-name">{{ data.cumpleañero.nombre }}</div>
-        <div class="hero-age">{{ data.cumpleañero.edad }}° Cumpleaños! 🎂</div>
+        <div class="hero-age">{{ data.cumpleañero.edad }}° Cumpleaños!</div>
         <div class="scroll-hint">⬇ Desliza para más ⬇</div>
       </div>
     </section>
@@ -53,16 +53,6 @@
             autoplay
           />
         </div>
-        <div class="lottie-in-content">
-          <lottie-player 
-            src="/emily-invitacion/fecha.json"
-            background="transparent"
-            speed="1"
-            style="width: 100px; height: 100px;"
-            loop
-            autoplay
-          />
-        </div>
         <h2>Fecha y Hora</h2>
         <div class="date-box">
           <div class="date">{{ data.evento.fecha }}</div>
@@ -72,6 +62,7 @@
     </section>
 
     <!-- Section 3: Ubicación -->
+    <!--
     <section class="section ubicacion" id="ubicacion">
       <div class="clouds-container">
         <img v-for="n in 12" :key="'ubi-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
@@ -103,8 +94,10 @@
         </div>
       </div>
     </section>
+    -->
 
     <!-- Section 4: Dress Code -->
+    <!--
     <section class="section dresscode" id="dresscode">
       <div class="clouds-container">
         <img v-for="n in 12" :key="'dress-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
@@ -112,24 +105,23 @@
       </div>
       <div class="bg-image" :style="{ backgroundImage: 'url(' + data.fotos.dressCode + ')' }"></div>
       <div class="overlay"></div>
-      <!-- <div class="lottie-overlay">
-        <lottie-player 
-          src="/emily-invitacion/conejito.json"
-          background="transparent"
-          speed="1"
-          style="width: 100%; height: 100%; position: absolute;"
-          loop
-          autoplay
-        />
-      </div> -->
       <div class="dc-content">
-        <div class="icon">👗</div>
+        <div class="icon">
+          <lottie-player 
+            src="https://oliver404.github.io/emily-invitacion/conejito.json"
+            background="transparent"
+            speed="1"
+            loop
+            autoplay />
+        </div>
         <h2>Dress Code</h2>
         <div class="dc-box">{{ data.evento.dressCode }}</div>
       </div>
     </section>
+    -->
 
     <!-- Section 5: RSVP -->
+    <!-- 
     <section class="section rsvp" id="rsvp">
       <div class="clouds-container">
         <img v-for="n in 12" :key="'rsvp-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
@@ -147,6 +139,7 @@
         </div>
       </div>
     </section>
+    -->
 
     <!-- Section 6: Fotos Recuerdos -->
     <section class="section fotos" id="fotos">
