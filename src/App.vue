@@ -350,8 +350,8 @@ onMounted(() => {
 }
 
 @keyframes cloudFloatVertical {
-  from { transform: translateY(0); }
-  to { transform: translateY(calc(100vh + 300px)); }
+  from { transform: translateY(calc(100vh + 300px)); }
+  to { transform: translateY(0); }
 }
 
 /* Background images */
