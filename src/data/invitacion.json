@@ -21,13 +21,13 @@
     "whatsapp": ""
   },
   "fotos": {
-    "hero": "https://oliver404.github.io/emily-invitacion/emily002.png",
+    "hero": "https://oliver404.github.io/emily-invitacion/images/emily002.png",
     "dressCode": "https://images.unsplash.com/photo-1612152605347-f93296d30f72?w=800",
     "galeria": [
-      "https://oliver404.github.io/emily-invitacion/emily001.png",
-      "https://oliver404.github.io/emily-invitacion/emily002.png",
-      "https://oliver404.github.io/emily-invitacion/emily003.png",
-      "https://oliver404.github.io/emily-invitacion/emily002.png"
+      "https://oliver404.github.io/emily-invitacion/images/emily001.png",
+      "https://oliver404.github.io/emily-invitacion/images/emily002.png",
+      "https://oliver404.github.io/emily-invitacion/images/emily003.png",
+      "https://oliver404.github.io/emily-invitacion/images/emily002.png"
     ]
   }
 }
