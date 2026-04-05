@@ -171,7 +171,7 @@
           :style="photo.style"
         >
         <img v-for="n in 12" :key="'hero-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
-             class="cloud" :style="getCloudStyle(n)" alt="cloud">
+             class="parallax-photo" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <!-- 
       <div class="section-content">
@@ -221,11 +221,11 @@ onMounted(() => {
   
   // Track accumulated delay per lane
   let delaysPerLane = [
-    Math.random() * 5,
-    Math.random() * 5,
-    Math.random() * 5,
-    Math.random() * 5,
-    Math.random() * 5
+    Math.floor(Math.random() * (7 - 3 + 1)) + 3,
+    Math.floor(Math.random() * (7 - 3 + 1)) + 3,
+    Math.floor(Math.random() * (7 - 3 + 1)) + 3,
+    Math.floor(Math.random() * (7 - 3 + 1)) + 3,
+    Math.floor(Math.random() * (7 - 3 + 1)) + 3
   ]
   
   const generatedPhotos = []
