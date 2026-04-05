@@ -4,10 +4,12 @@
     <section class="section hero" id="hero">
       <div class="hero-bg" :style="{ backgroundImage: 'url(https://oliver404.github.io/emily-invitacion/images/emily002.png)' }"></div>
       <div class="hero-overlay"></div>
+      <!-- 
       <div class="clouds-container">
         <img v-for="n in 12" :key="'hero-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
+      -->
       <div class="lottie-bunny" style="bottom: 20vh; right: 3rem;">
         <lottie-player 
           src="https://oliver404.github.io/emily-invitacion/conejito.json"
@@ -53,10 +55,27 @@
             autoplay
           />
         </div>
-        <h2>Fecha y Hora</h2>
+        <h2>Fecha</h2>
         <div class="date-box">
           <div class="date">{{ data.evento.fecha }}</div>
           <div class="time">{{ data.evento.hora }}</div>
+        </div>
+      </div>
+      <div class="section-content">
+        <div class="icon">
+          <lottie-player 
+            src="/emily-invitacion/ubicacion.json"
+            background="transparent"
+            speed="1"
+            loop
+            autoplay
+          />
+        </div>
+        <h2>Ubicación</h2>
+        <div class="location-box">
+          <div class="place">{{ data.evento.ubicacion.lugar }}</div>
+          <div class="address">{{ data.evento.ubicacion.dirección }}</div>
+          <div class="city">{{ data.evento.ubicacion.ciudad }}</div>
         </div>
       </div>
     </section>
@@ -151,6 +170,8 @@
           class="parallax-photo"
           :style="photo.style"
         >
+        <img v-for="n in 12" :key="'hero-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
+             class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <!-- 
       <div class="section-content">
@@ -200,11 +221,11 @@ onMounted(() => {
   
   // Track accumulated delay per lane
   let delaysPerLane = [
-    Math.random() * 2,
-    Math.random() * 2,
-    Math.random() * 2,
-    Math.random() * 2,
-    Math.random() * 2
+    Math.random() * 5,
+    Math.random() * 5,
+    Math.random() * 5,
+    Math.random() * 5,
+    Math.random() * 5
   ]
   
   const generatedPhotos = []
