@@ -44,7 +44,16 @@
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="section-content">
-        <div class="icon">🎉</div>
+        <div class="icon">
+          <lottie-player 
+            src="/emily-invitacion/fecha.json"
+            background="transparent"
+            speed="1"
+            style="width: 150px; height: 150px;"
+            loop
+            autoplay
+          />
+        </div>
         <h2>Fecha y Hora</h2>
         <div class="date-box">
           <div class="date">{{ data.evento.fecha }}</div>
