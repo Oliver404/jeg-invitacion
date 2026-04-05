@@ -60,8 +60,7 @@
           <div class="date">{{ data.evento.fecha }}</div>
           <div class="time">{{ data.evento.hora }}</div>
         </div>
-      </div>
-      <div class="section-content">
+        
         <div class="icon">
           <lottie-player 
             src="/emily-invitacion/ubicacion.json"
