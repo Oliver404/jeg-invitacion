@@ -2,7 +2,7 @@
   <main class="app">
     <!-- Section 1: Hero -->
     <section class="section hero" id="hero">
-      <div class="hero-bg" :style="{ backgroundImage: 'url(https://images.unsplash.com/photo-1596464716127-f9a82b294132?w=800)' }"></div>
+      <div class="hero-bg" :style="{ backgroundImage: 'url(https://oliver404.github.io/emily-invitacion/images/emily002.png)' }"></div>
       <div class="hero-overlay"></div>
       <div class="clouds-container">
         <img v-for="n in 12" :key="'hero-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
@@ -152,10 +152,12 @@
           :style="photo.style"
         >
       </div>
+      <!-- 
       <div class="section-content">
         <div class="icon">📸</div>
         <h2>Recuerdos</h2>
       </div>
+       -->
     </section>
   </main>
 </template>
