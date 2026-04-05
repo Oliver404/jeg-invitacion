@@ -10,7 +10,7 @@
       </div>
       <div class="lottie-bunny">
         <lottie-player 
-          src="https://oliver404.github.io/emily-invitacion/conejito.json"
+          src="https://oliver404.github.io/emily-invitacion/pastel.json"
           background="transparent"
           speed="1"
           style="width: 200px; height: 200px;"
@@ -21,7 +21,7 @@
       <div class="hero-content">
         <div class="lottie-in-content">
           <lottie-player 
-            src="https://oliver404.github.io/emily-invitacion/pastel.json"
+            src="https://oliver404.github.io/emily-invitacion/conejito.json"
             background="transparent"
             speed="1"
             style="width: 100px; height: 100px;"
@@ -32,7 +32,7 @@
         <h1 class="hero-title">{{ data.evento.titulo }}</h1>
         <p class="hero-subtitle">{{ data.evento.subtitulo }}</p>
         <div class="hero-name">{{ data.cumpleañero.nombre }}</div>
-        <div class="hero-age">{{ data.cumpleañero.edad }}.er Birthday! 🎂</div>
+        <div class="hero-age">{{ data.cumpleañero.edad }}° Cumpleaños! 🎂</div>
         <div class="scroll-hint">⬇ Desliza para más ⬇</div>
       </div>
     </section>
@@ -49,7 +49,16 @@
             src="/emily-invitacion/fecha.json"
             background="transparent"
             speed="1"
-            style="width: 150px; height: 150px;"
+            loop
+            autoplay
+          />
+        </div>
+        <div class="lottie-in-content">
+          <lottie-player 
+            src="/emily-invitacion/fecha.json"
+            background="transparent"
+            speed="1"
+            style="width: 100px; height: 100px;"
             loop
             autoplay
           />
