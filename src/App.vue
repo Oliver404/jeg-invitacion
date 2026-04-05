@@ -8,7 +8,7 @@
         <img v-for="n in 12" :key="'hero-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
-      <div class="lottie-bunny" style="bottom: 5rem; right: 3rem;">
+      <div class="lottie-bunny" style="bottom: 10vh; right: 3rem;">
         <lottie-player 
           src="https://oliver404.github.io/emily-invitacion/conejito.json"
           background="transparent"
