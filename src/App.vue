@@ -46,7 +46,7 @@
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="section-content">
-        <div class="icon">
+        <div class="icon" style="height: 100px;">
           <lottie-player 
             src="/emily-invitacion/fecha.json"
             background="transparent"
@@ -60,8 +60,8 @@
           <div class="date">{{ data.evento.fecha }}</div>
           <div class="time">{{ data.evento.hora }}</div>
         </div>
-        
-        <div class="icon">
+
+        <div class="icon" style="height: 100px; margin-top: 3rem;">
           <lottie-player 
             src="/emily-invitacion/ubicacion.json"
             background="transparent"
