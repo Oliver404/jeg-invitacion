@@ -162,6 +162,10 @@
 
     <!-- Section 6: Fotos Recuerdos -->
     <section class="section fotos" id="fotos">
+      <div class="clouds-container">
+        <img v-for="n in 12" :key="'hero-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
+             class="cloud-vertical" :style="getCloudStyleVertical(n)" alt="cloud">
+      </div>
       <div class="parallax-container" id="parallax-container">
         <img 
           v-for="(photo, index) in photos" 
@@ -170,8 +174,6 @@
           class="parallax-photo"
           :style="photo.style"
         >
-        <img v-for="n in 12" :key="'hero-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
-             class="parallax-photo" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <!-- 
       <div class="section-content">
@@ -204,6 +206,21 @@ const getCloudStyle = (n) => {
   }
 }
 
+const getCloudStyleVertical = (n) => {
+  const sizes = [60, 90, 120, 80, 140, 100, 70, 130, 110, 95, 85, 125]
+  const topPositions = [5, 15, 25, 35, 45, 55, 65, 75, 10, 30, 50, 70]
+  const speeds = [25, 20, 15, 22, 12, 18, 28, 14, 16, 24, 19, 13]
+  const delays = [0, -5, -10, -3, -8, -15, -2, -12, -7, -4, -11, -6]
+  const size = sizes[n-1]
+  return {
+    width: size + 'px',
+    left: topPositions[n-1] + '%',
+    animationDuration: speeds[n-1] + 's',
+    animationDelay: delays[n-1] + 's',
+    opacity: size > 100 ? 0.5 : (size / 100) * 0.4 + 0.1
+  }
+}
+
 // Parallax rain with lanes - avoiding overlaps
 const photos = ref([])
 
@@ -211,9 +228,9 @@ onMounted(() => {
   // Duplicate photos for more images
   const allPhotos = [
     ...data.fotos.galeria,
-    ...data.fotos.galeria,
-    ...data.fotos.galeria,
     ...data.fotos.galeria
+    // ...data.fotos.galeria,
+    // ...data.fotos.galeria
   ]
   
   // 5 lanes (horizontal positions)
@@ -320,9 +337,21 @@ onMounted(() => {
   will-change: transform;
 }
 
+.cloud-vertical {
+  position: absolute;
+  bottom: -150px;
+  animation: cloudFloatVertical linear infinite;
+  will-change: transform;
+}
+
 @keyframes cloudFloat {
   from { transform: translateX(0); }
   to { transform: translateX(calc(100vw + 300px)); }
+}
+
+@keyframes cloudFloatVertical {
+  from { transform: translateY(0); }
+  to { transform: translateY(calc(100vh + 300px)); }
 }
 
 /* Background images */
