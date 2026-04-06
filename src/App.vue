@@ -34,7 +34,8 @@
         <h1 class="hero-title">{{ data.evento.titulo }}</h1>
         <p class="hero-subtitle">{{ data.evento.subtitulo }}</p>
         <div class="hero-name">{{ data.cumpleañero.nombre }}</div>
-        <div class="hero-age">{{ data.cumpleañero.edad }}° Cumpleaños!</div>
+        <div class="hero-age" style="font-size: 2rem; font-weight: bolder; margin-bottom: 20px;">¿Cuántos cumplimos?</div>
+        <div class="hero-age">{{ data.cumpleañero.edad }}</div>
         <div class="scroll-hint">⬇ Desliza para más ⬇</div>
       </div>
     </section>
@@ -60,22 +61,6 @@
           <div class="date">{{ data.evento.fecha }}</div>
           <div class="time">{{ data.evento.hora }}</div>
         </div>
-
-        <div class="icon" style="height: 100px; margin-top: 3rem;">
-          <lottie-player 
-            src="/jeg-invitacion/ubicacion.json"
-            background="transparent"
-            speed="1"
-            loop
-            autoplay
-          />
-        </div>
-        <h2>Ubicación</h2>
-        <div class="location-box">
-          <div class="place">{{ data.evento.ubicacion.lugar }}</div>
-          <div class="address">{{ data.evento.ubicacion.dirección }}</div>
-          <div class="city">{{ data.evento.ubicacion.ciudad }}</div>
-        </div>
       </div>
     </section>
 
@@ -89,7 +74,15 @@
       <div class="bg-image" :style="{ backgroundImage: 'url(https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800)' }"></div>
       <div class="overlay"></div>
       <div class="section-content">
-        <div class="icon">📍</div>
+        <div class="icon" style="width: 100px; height: 100px;">
+          <lottie-player 
+            src="/jeg-invitacion/ubicacion.json"
+            background="transparent"
+            speed="1"
+            loop
+            autoplay
+          />
+        </div>
         <h2>Ubicación</h2>
         <div class="location-box">
           <div class="place">{{ data.evento.ubicacion.lugar }}</div>
@@ -98,12 +91,12 @@
           <div class="map-container">
             <iframe 
               width="100%" 
-              height="150" 
+              height="250" 
               style="border:0; border-radius: 15px;" 
               loading="lazy" 
               allowfullscreen 
               referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.5!2d-99.1332!3d19.4326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDI1JzU4LjEiTiA5OUoxMzMsMjAuNTYY!5e0!3m2!1ses!2smx!4v1">
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d262.3691773467057!2d-99.20620669447337!3d18.926851333831475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cddf91325c0f71%3A0xda62c6683c873a0a!2sLuna%2017%2C%20Jardines%20de%20Cuernavaca%2C%2062360%20Cuernavaca%2C%20Mor.!5e0!3m2!1ses-419!2smx!4v1775502979643!5m2!1ses-419!2smx">
             </iframe>
           </div>
           <a :href="mapsUrl" target="_blank" class="directions-btn">
@@ -124,7 +117,7 @@
       <div class="bg-image" :style="{ backgroundImage: 'url(' + data.fotos.dressCode + ')' }"></div>
       <div class="overlay"></div>
       <div class="dc-content">
-        <div class="icon">
+        <div class="icon" style="width: 100px; height: 100px;">
           <lottie-player 
             src="https://oliver404.github.io/jeg-invitacion/conejito.json"
             background="transparent"
@@ -149,8 +142,8 @@
         <div class="icon">💌</div>
         <h2>Confirmar Asistencia</h2>
         <div class="rsvp-box">
-          <p>¡Quiero estar en tu fiesta! 🎈</p>
-          <a :href="data.rsvp.whatsapp" target="_blank" class="rsvp-btn">
+          <p style="color: deeppink;">¡Le brinco a tu fiesta! 🐇</p>
+          <a href="https://wa.me/527775114580?text=Si%20le%20brinco%20a%20tu%20fiesta%20%F0%9F%90%B0" target="_blank" class="rsvp-btn">
             Confirmar 💕
           </a>
           <p class="contact">{{ data.rsvp.contacto }}</p>
@@ -187,7 +180,7 @@
 import { ref, onMounted } from 'vue'
 import data from './data/invitacion.json'
 
-const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(data.evento.ubicacion.lugar + ' ' + data.evento.ubicacion.dirección + ' ' + data.evento.ubicacion.ciudad)}`
+const mapsUrl = 'https://maps.app.goo.gl/KsaKkG5HgvDJR5vL9'
 
 const getCloudStyle = (n) => {
   const sizes = [60, 90, 120, 80, 140, 100, 70, 130, 110, 95, 85, 125]
