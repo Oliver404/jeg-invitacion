@@ -80,7 +80,7 @@
     </section>
 
     <!-- Section 3: Ubicación -->
-    <!--
+    
     <section class="section ubicacion" id="ubicacion">
       <div class="clouds-container">
         <img v-for="n in 12" :key="'ubi-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
@@ -112,10 +112,10 @@
         </div>
       </div>
     </section>
-    -->
+    
 
     <!-- Section 4: Dress Code -->
-    <!--
+    
     <section class="section dresscode" id="dresscode">
       <div class="clouds-container">
         <img v-for="n in 12" :key="'dress-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
@@ -136,10 +136,10 @@
         <div class="dc-box">{{ data.evento.dressCode }}</div>
       </div>
     </section>
-    -->
+    
 
     <!-- Section 5: RSVP -->
-    <!-- 
+    
     <section class="section rsvp" id="rsvp">
       <div class="clouds-container">
         <img v-for="n in 12" :key="'rsvp-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
@@ -157,7 +157,6 @@
         </div>
       </div>
     </section>
-    -->
 
     <!-- Section 6: Fotos Recuerdos -->
     <section class="section fotos" id="fotos">
