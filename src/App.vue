@@ -2,17 +2,17 @@
   <main class="app">
     <!-- Section 1: Hero -->
     <section class="section hero" id="hero">
-      <div class="hero-bg" :style="{ backgroundImage: 'url(https://oliver404.github.io/emily-invitacion/images/emily002.png)' }"></div>
+      <div class="hero-bg" :style="{ backgroundImage: 'url(https://oliver404.github.io/jeg-invitacion/images/emily002.png)' }"></div>
       <div class="hero-overlay"></div>
       <!-- 
       <div class="clouds-container">
-        <img v-for="n in 12" :key="'hero-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
+        <img v-for="n in 12" :key="'hero-'+n" :src="'/jeg-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       -->
       <div class="lottie-bunny" style="bottom: 20vh; right: 3rem;">
         <lottie-player 
-          src="https://oliver404.github.io/emily-invitacion/conejito.json"
+          src="https://oliver404.github.io/jeg-invitacion/conejito.json"
           background="transparent"
           speed="1"
           style="width: 200px; height: 200px;"
@@ -23,7 +23,7 @@
       <div class="hero-content">
         <div class="lottie-in-content">
           <lottie-player 
-            src="https://oliver404.github.io/emily-invitacion/pastel.json"
+            src="https://oliver404.github.io/jeg-invitacion/pastel.json"
             background="transparent"
             speed="1"
             style="width: 100px; height: 100px;"
@@ -42,13 +42,13 @@
     <!-- Section 2: Fecha -->
     <section class="section fecha" id="fecha">
       <div class="clouds-container">
-        <img v-for="n in 12" :key="'fecha-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
+        <img v-for="n in 12" :key="'fecha-'+n" :src="'/jeg-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="section-content">
         <div class="icon" style="height: 100px;">
           <lottie-player 
-            src="/emily-invitacion/fecha.json"
+            src="/jeg-invitacion/fecha.json"
             background="transparent"
             speed="1"
             loop
@@ -63,7 +63,7 @@
 
         <div class="icon" style="height: 100px; margin-top: 3rem;">
           <lottie-player 
-            src="/emily-invitacion/ubicacion.json"
+            src="/jeg-invitacion/ubicacion.json"
             background="transparent"
             speed="1"
             loop
@@ -83,7 +83,7 @@
     
     <section class="section ubicacion" id="ubicacion">
       <div class="clouds-container">
-        <img v-for="n in 12" :key="'ubi-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
+        <img v-for="n in 12" :key="'ubi-'+n" :src="'/jeg-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="bg-image" :style="{ backgroundImage: 'url(https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800)' }"></div>
@@ -118,7 +118,7 @@
     
     <section class="section dresscode" id="dresscode">
       <div class="clouds-container">
-        <img v-for="n in 12" :key="'dress-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
+        <img v-for="n in 12" :key="'dress-'+n" :src="'/jeg-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="bg-image" :style="{ backgroundImage: 'url(' + data.fotos.dressCode + ')' }"></div>
@@ -126,7 +126,7 @@
       <div class="dc-content">
         <div class="icon">
           <lottie-player 
-            src="https://oliver404.github.io/emily-invitacion/conejito.json"
+            src="https://oliver404.github.io/jeg-invitacion/conejito.json"
             background="transparent"
             speed="1"
             loop
@@ -142,7 +142,7 @@
     
     <section class="section rsvp" id="rsvp">
       <div class="clouds-container">
-        <img v-for="n in 12" :key="'rsvp-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
+        <img v-for="n in 12" :key="'rsvp-'+n" :src="'/jeg-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="section-content">
@@ -161,7 +161,7 @@
     <!-- Section 6: Fotos Recuerdos -->
     <section class="section fotos" id="fotos">
       <div class="clouds-container">
-        <img v-for="n in 12" :key="'hero-'+n" :src="'/emily-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
+        <img v-for="n in 12" :key="'hero-'+n" :src="'/jeg-invitacion/images/cloud' + ((n-1)%4+1) + '.png'" 
              class="cloud-vertical" :style="getCloudStyleVertical(n)" alt="cloud">
       </div>
       <div class="parallax-container" id="parallax-container">
