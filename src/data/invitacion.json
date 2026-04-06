@@ -1,7 +1,11 @@
 {
   "cumpleañero": {
-    "nombre": "Emily | Josefina | Gilberto",
-    "edad": "6 | No se pregunta | Chavo",
+    "nombre1": "Emily",
+    "nombre2": "Josefina",
+    "nombre3": "Gilberto",
+    "edad1": "6",
+    "edad2": "No se pregunta",
+    "edad3": "Chavo",
     "tipo": "Cumpleaños"
   },
   "evento": {
@@ -14,7 +18,8 @@
       "dirección": "Luna 17, Jardines de Cuervaca",
       "ciudad": "Cuernavaca"
     },
-    "dressCode": "Obligatorio el uso de orejas de conjeno 🐰.\nSugerencia: Usar color blanco o rosa"
+    "dressCode": "Obligatorio el uso de orejas de conjeno 🐰",
+    "dressOptional": "Sugerencia: Usar color blanco o rosa"
   },
   "rsvp": {
     "contacto": "Josefina",

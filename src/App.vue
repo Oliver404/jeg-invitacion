@@ -10,7 +10,7 @@
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       -->
-      <div class="lottie-bunny" style="bottom: 20vh; right: 3rem;">
+      <div class="lottie-bunny" style="bottom: 15vh; right: 3rem;">
         <lottie-player 
           src="https://oliver404.github.io/jeg-invitacion/conejito.json"
           background="transparent"
@@ -26,16 +26,19 @@
             src="https://oliver404.github.io/jeg-invitacion/pastel.json"
             background="transparent"
             speed="1"
-            style="width: 100px; height: 100px;"
+            style="width: 75px; height: 75px;"
             loop
             autoplay
           />
         </div>
         <h1 class="hero-title">{{ data.evento.titulo }}</h1>
         <p class="hero-subtitle">{{ data.evento.subtitulo }}</p>
-        <div class="hero-name">{{ data.cumpleañero.nombre }}</div>
-        <div class="hero-age" style="font-size: 2rem; font-weight: bolder; margin-bottom: 20px;">¿Cuántos cumplimos?</div>
-        <div class="hero-age">{{ data.cumpleañero.edad }}</div>
+        <div class="hero-name">{{ data.cumpleañero.nombre1 }}</div>
+        <div class="hero-age">Años: {{ data.cumpleañero.edad1 }}</div>
+        <div class="hero-name">{{ data.cumpleañero.nombre2 }}</div>
+        <div class="hero-age">Años: {{ data.cumpleañero.edad2 }}</div>
+        <div class="hero-name">{{ data.cumpleañero.nombre3 }}</div>
+        <div class="hero-age">Años: {{ data.cumpleañero.edad3 }}</div>
         <div class="scroll-hint">⬇ Desliza para más ⬇</div>
       </div>
     </section>
@@ -47,16 +50,17 @@
              class="cloud" :style="getCloudStyle(n)" alt="cloud">
       </div>
       <div class="section-content">
-        <div class="icon" style="height: 100px;">
+        <div class="icon">
           <lottie-player 
             src="/jeg-invitacion/fecha.json"
             background="transparent"
             speed="1"
             loop
             autoplay
+            style="width: 100px; height: 100px;"
           />
         </div>
-        <h2>Fecha</h2>
+        <h2>Fecha y Hora</h2>
         <div class="date-box">
           <div class="date">{{ data.evento.fecha }}</div>
           <div class="time">{{ data.evento.hora }}</div>
@@ -74,13 +78,14 @@
       <div class="bg-image" :style="{ backgroundImage: 'url(https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800)' }"></div>
       <div class="overlay"></div>
       <div class="section-content">
-        <div class="icon" style="width: 100px; height: 100px;">
+        <div class="icon">
           <lottie-player 
             src="/jeg-invitacion/ubicacion.json"
             background="transparent"
             speed="1"
             loop
             autoplay
+            style="width: 100px; height: 100px;"
           />
         </div>
         <h2>Ubicación</h2>
@@ -117,16 +122,19 @@
       <div class="bg-image" :style="{ backgroundImage: 'url(' + data.fotos.dressCode + ')' }"></div>
       <div class="overlay"></div>
       <div class="dc-content">
-        <div class="icon" style="width: 100px; height: 100px;">
+        <div class="icon">
           <lottie-player 
             src="https://oliver404.github.io/jeg-invitacion/conejito.json"
             background="transparent"
             speed="1"
             loop
-            autoplay />
+            autoplay 
+            style="width: 100px; height: 100px;" />
         </div>
         <h2>Dress Code</h2>
         <div class="dc-box">{{ data.evento.dressCode }}</div>
+        <h3>Opcional</h3>
+        <div class="dc-box-optional">{{ data.evento.dressOptional }}</div>
       </div>
     </section>
     
@@ -146,7 +154,6 @@
           <a href="https://wa.me/527775114580?text=Si%20le%20brinco%20a%20tu%20fiesta%20%F0%9F%90%B0" target="_blank" class="rsvp-btn">
             Confirmar 💕
           </a>
-          <p class="contact">{{ data.rsvp.contacto }}</p>
         </div>
       </div>
     </section>
@@ -566,6 +573,16 @@ onMounted(() => {
   border-radius: 25px;
   font-size: 1.4rem;
   color: #ff69b4;
+  font-weight: bold;
+}
+
+.dc-box-optional {
+  font-family: 'Fredoka', cursive;
+  background: rgba(255,255,255,0.65);
+  padding: 25px 40px;
+  border-radius: 25px;
+  font-size: 1.4rem;
+  color: #ff69b4ba;
   font-weight: bold;
 }
 
