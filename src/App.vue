@@ -26,18 +26,18 @@
             src="https://oliver404.github.io/jeg-invitacion/pastel.json"
             background="transparent"
             speed="1"
-            style="width: 75px; height: 75px;"
+            style="width: 150px !important; height: 150px !important;"
             loop
             autoplay
           />
         </div>
         <h1 class="hero-title">{{ data.evento.titulo }}</h1>
         <p class="hero-subtitle">{{ data.evento.subtitulo }}</p>
-        <div class="hero-name">{{ data.cumpleañero.nombre1 }}</div>
+        <div class="hero-name" style="text-shadow: 3px 3px 0 #ff69b4, 2px 2px 6px rgba(0,0,0,0.5);">{{ data.cumpleañero.nombre1 }}</div>
         <div class="hero-age">Años: {{ data.cumpleañero.edad1 }}</div>
-        <div class="hero-name">{{ data.cumpleañero.nombre2 }}</div>
+        <div class="hero-name" style="text-shadow: 3px 3px 0 #ff69b4, 2px 2px 6px rgba(0,0,0,0.7);">{{ data.cumpleañero.nombre2 }}</div>
         <div class="hero-age">Años: {{ data.cumpleañero.edad2 }}</div>
-        <div class="hero-name">{{ data.cumpleañero.nombre3 }}</div>
+        <div class="hero-name" style="text-shadow: 3px 3px 0 #ff69b4, 2px 2px 6px rgba(0,0,0,0.9);">{{ data.cumpleañero.nombre3 }}</div>
         <div class="hero-age">Años: {{ data.cumpleañero.edad3 }}</div>
         <div class="scroll-hint">⬇ Desliza para más ⬇</div>
       </div>
@@ -57,7 +57,7 @@
             speed="1"
             loop
             autoplay
-            style="width: 100px; height: 100px;"
+            style="height: 100px;"
           />
         </div>
         <h2>Fecha y Hora</h2>
@@ -85,7 +85,7 @@
             speed="1"
             loop
             autoplay
-            style="width: 100px; height: 100px;"
+            style="height: 100px;"
           />
         </div>
         <h2>Ubicación</h2>
@@ -96,7 +96,7 @@
           <div class="map-container">
             <iframe 
               width="100%" 
-              height="250" 
+              height="150" 
               style="border:0; border-radius: 15px;" 
               loading="lazy" 
               allowfullscreen 
@@ -129,7 +129,7 @@
             speed="1"
             loop
             autoplay 
-            style="width: 100px; height: 100px;" />
+            style="height: 100px;" />
         </div>
         <h2>Dress Code</h2>
         <div class="dc-box">{{ data.evento.dressCode }}</div>
@@ -450,13 +450,12 @@ onMounted(() => {
   font-size: 4rem;
   font-weight: bold;
   color: #fff;
-  text-shadow: 3px 3px 0 #ff69b4, 2px 2px 6px rgba(0,0,0,0.5);
 }
 
 .hero-age {
   font-family: 'Baloo 2', cursive;
   font-size: 1.8rem;
-  margin: 10px 0 40px;
+  margin: 10px 0 15px;
   color: #fff;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
