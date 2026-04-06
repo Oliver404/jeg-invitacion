@@ -1,24 +1,24 @@
 {
   "cumpleañero": {
-    "nombre": "Emily",
-    "edad": 6,
+    "nombre": "Emily | Josefina | Gilberto",
+    "edad": "6 | No se pregunta | Chavo",
     "tipo": "Cumpleaños"
   },
   "evento": {
     "titulo": "¡Estás Invitado!",
-    "subtitulo": "¡Ven a celebrar mi cumple!",
-    "fecha": "14 de Abril de 2026",
-    "hora": "",
+    "subtitulo": "¡Ven a celebrar nuestro cumple!",
+    "fecha": "11 de Abril de 2026",
+    "hora": "2:00 PM",
     "ubicacion": {
-      "lugar": "Jardin de Niños Popocatépetl",
-      "dirección": "",
-      "ciudad": ""
+      "lugar": "Casa de Gil AKA 'El Chido'",
+      "dirección": "Luna 17, Jardines de Cuervaca",
+      "ciudad": "Cuernavaca"
     },
-    "dressCode": ""
+    "dressCode": "Obligatorio el uso de orejas de conjeno 🐰. Sugerencia: Usar color blanco o rosa"
   },
   "rsvp": {
-    "contacto": "",
-    "whatsapp": ""
+    "contacto": "TEst",
+    "whatsapp": "7771232323"
   },
   "fotos": {
     "hero": "https://oliver404.github.io/jeg-invitacion/images/emily002.png",
