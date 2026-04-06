@@ -26,7 +26,7 @@
             src="https://oliver404.github.io/jeg-invitacion/pastel.json"
             background="transparent"
             speed="1"
-            style="width: 150px !important; height: 150px !important;"
+            style="width: 100px !important; height: 100px !important;"
             loop
             autoplay
           />
@@ -35,9 +35,9 @@
         <p class="hero-subtitle">{{ data.evento.subtitulo }}</p>
         <div class="hero-name" style="text-shadow: 3px 3px 0 #ff69b4, 2px 2px 6px rgba(0,0,0,0.5);">{{ data.cumpleañero.nombre1 }}</div>
         <div class="hero-age">Años: {{ data.cumpleañero.edad1 }}</div>
-        <div class="hero-name" style="text-shadow: 3px 3px 0 #ff69b4, 2px 2px 6px rgba(0,0,0,0.7);">{{ data.cumpleañero.nombre2 }}</div>
+        <div class="hero-name" style="text-shadow: 3px 3px 0 #ff0000, 2px 2px 6px rgba(0,0,0,0.7);">{{ data.cumpleañero.nombre2 }}</div>
         <div class="hero-age">Años: {{ data.cumpleañero.edad2 }}</div>
-        <div class="hero-name" style="text-shadow: 3px 3px 0 #ff69b4, 2px 2px 6px rgba(0,0,0,0.9);">{{ data.cumpleañero.nombre3 }}</div>
+        <div class="hero-name" style="text-shadow: 3px 3px 0 #48abff, 2px 2px 6px rgba(0,0,0,0.9);">{{ data.cumpleañero.nombre3 }}</div>
         <div class="hero-age">Años: {{ data.cumpleañero.edad3 }}</div>
         <div class="scroll-hint">⬇ Desliza para más ⬇</div>
       </div>
@@ -129,11 +129,15 @@
             speed="1"
             loop
             autoplay 
-            style="height: 100px;" />
+            style="height: 150px;" />
         </div>
         <h2>Dress Code</h2>
-        <div class="dc-box">{{ data.evento.dressCode }}</div>
-        <h3>Opcional</h3>
+        <div class="dc-box">
+          🚨 Obligatorio 🚨
+          <br>
+          {{ data.evento.dressCode }}
+        </div>
+        <h2 style="font-size: 18px;">Opcional</h2>
         <div class="dc-box-optional">{{ data.evento.dressOptional }}</div>
       </div>
     </section>
@@ -580,8 +584,8 @@ onMounted(() => {
   background: rgba(255,255,255,0.65);
   padding: 25px 40px;
   border-radius: 25px;
-  font-size: 1.4rem;
-  color: #ff69b4ba;
+  font-size: 1rem;
+  color: #848484ba;
   font-weight: bold;
 }
 
@@ -670,7 +674,7 @@ onMounted(() => {
 /* Responsive */
 @media (max-width: 600px) {
   .hero-title { font-size: 2rem; }
-  .hero-name { font-size: 2.5rem; }
+  .hero-name { font-size: 2.1rem; }
   .section h2 { font-size: 1.5rem; }
   .bunny-icon { font-size: 3rem; }
   .scroll-hint { font-size: 1.1rem; }
