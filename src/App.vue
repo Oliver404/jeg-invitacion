@@ -2,7 +2,7 @@
   <main class="app">
     <!-- Section 1: Hero -->
     <section class="section hero" id="hero">
-      <div class="hero-bg" :style="{ backgroundImage: 'url(https://oliver404.github.io/jeg-invitacion/images/emily002.png)' }"></div>
+      <div class="hero-bg" :style="{ backgroundImage: 'url(https://oliver404.github.io/jeg-invitacion/images/emily704.png)' }"></div>
       <div class="hero-overlay"></div>
       <!-- 
       <div class="clouds-container">
